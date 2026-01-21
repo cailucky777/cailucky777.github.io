@@ -12,54 +12,62 @@ section:
 buttons:
 - name: All
   filter: "all"
-- name: Professional
-  filter: "professional"
+- name: Web Development
+  filter: "web"
+- name: AI & Machine Learning
+  filter: "ai-ml"
+- name: Mobile Development
+  filter: "mobile"
 - name: Academic
   filter: "academic"
-- name: Hobby
-  filter: "hobby"
 
 # your projects
 projects:
-- name: Kubernetes
-  logo: /images/sections/projects/kubernetes.png
-  role: Contributor
-  timeline: "March 2018 - Present"
-  repo: https://github.com/kubernetes/kubernetes # If your project is a public repo on GitHub, then provide this link. it will show star count.
-  #url: ""  # If your project is not a public repo but it has a website or any external details url then provide it here. don't provide "repo" and "url" simultaneously.
-  summary: Production-Grade Container Scheduling and Management.
-  tags: ["professional", "kubernetes", "cloud"]
-
-- name: Tensorflow
-  logo: /images/sections/projects/tensorflow.png
+- name: TeamSync Polyglot
   role: Developer
-  timeline: "Jun 2018 - Present"
-  repo: https://github.com/tensorflow/tensorflow
-  #url: ""
-  summary: An Open Source Machine Learning Framework for Everyone.
-  tags: ["professional", "machine-learning"]
+  timeline: "2024 - Present"
+  repo: https://github.com/cailucky777/teamsync-polyglot
+  summary: An offline-ready meeting intelligence platform powered by Next.js and Google TranslateGemma. Features real-time translation, meeting transcription, and intelligent note-taking capabilities.
+  tags: ["web", "ai-ml", "typescript", "nextjs"]
 
-- name: A sample academic paper
-  role: Team Lead
-  timeline: "Jan 2017 - Nov 2017"
-  url: "https://www.example.com"
-  summary: Lorem ipsum dolor sit amet consectetur adipisicing elit. Sapiente eius reprehenderit animi suscipit autem eligendi esse amet aliquid error eum. Accusantium distinctio soluta aliquid quas placeat modi suscipit eligendi nisi.
-  tags: ["academic","iot"]
+- name: Local Docs Agent
+  role: Developer
+  timeline: "2025"
+  repo: https://github.com/cailucky777/local-docs-agent
+  summary: A command-line intelligent assistant based on LangChain that can load local PDF, Markdown, and TXT documents, answer questions through vector retrieval, and support source citations. Perfect for document Q&A and knowledge management.
+  tags: ["ai-ml", "python", "langchain"]
 
-- name: Nocode
-  logo: /images/sections/projects/no-code.png
-  role: Nothing
-  timeline: "Oct 2019 - Dec 2019"
-  repo: https://github.com/kelseyhightower/nocode
-  #url: ""
-  summary: The best way to write secure and reliable applications. Write nothing; deploy nowhere.
-  tags: ["hobby", "fun"]
+- name: PyTorch Tutorial
+  role: Contributor
+  timeline: "2025"
+  repo: https://github.com/cailucky777/pytorch-tutorial
+  summary: Comprehensive PyTorch tutorial for deep learning researchers. Covers fundamental concepts, neural network architectures, and practical implementations for computer vision and NLP tasks.
+  tags: ["ai-ml", "python", "deep-learning", "academic"]
 
-- name: Toha
-  logo: /images/sections/projects/toha.png
-  image: /images/sections/projects/toha_website.png
-  role: Owner
-  timeline: "Jun 2019 - Present"
-  repo: https://github.com/hossainemruz/toha
-  summary: A Hugo theme for personal portfolio.
-  tags: ["hobby","hugo","theme","professional"]
+- name: iOS App Practice
+  role: Developer
+  timeline: "2025"
+  repo: https://github.com/cailucky777/iosApp_practice
+  summary: Collection of iOS application development projects showcasing Swift programming, UIKit, and SwiftUI implementations. Includes various app prototypes and learning exercises.
+  tags: ["mobile", "swift", "ios"]
+
+- name: Scientific Visualization (CIS410 )
+  role: Student Developer
+  timeline: "2022"
+  repo: https://github.com/cailucky777/CIS410
+  summary: Scientific visualization course project introducing theory and techniques for visualizing scientific data. Implements algorithms such as isosurfacing, streamlines, and volume rendering using C++.
+  tags: ["academic", "c++", "visualization"]
+
+- name: Algorithm Paper Analysis
+  role: Team Member
+  timeline: "2025"
+  repo: https://github.com/cailucky777/AlgorithmPaper_group5
+  summary: Group project analyzing and implementing algorithms from research papers. Includes Jupyter notebooks with detailed explanations, visualizations, and performance comparisons.
+  tags: ["academic", "python", "algorithms"]
+
+- name: Superpowers
+  role: Contributor
+  timeline: "2026"
+  repo: https://github.com/cailucky777/superpowers
+  summary: Claude Code superpowers core skills library. A collection of utilities and tools to enhance development workflows and productivity.
+  tags: ["tools", "shell"]

@@ -10,95 +10,64 @@ section:
   # hideTitle: true
 
 degrees:
-- name: Ph.D in Quantum Cryptography
-  icon: fa-microscope
-  timeframe: 2016-2020
+- name: Master of Science in Applied Computing
+  icon: fa-laptop-code
+  timeframe: Sep 2025 - Dec 2026 (est.)
   institution:
-    name: ABC University of Technology
-    url: "#"
-    logo: /images/sections/education/tech_college.png
+    name: British Columbia Institute of Technology (BCIT)
+    url: "https://www.bcit.ca"
+    # logo: /images/sections/education/bcit.png
     # Can optionally show a different logo for dark theme
-    # darkLogo: /images/sections/education/tech_college.png
-  grade: #(optional)
-    scale: CGPA
-    achieved: 3.6
-    outOf: 4
-  publications: #(optional)
-  - title: Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-    url: "#"
-  - title: Fusce eu augue ut odio porttitor pulvinar.
-    url: "#"
-  - title: Nullam vitae orci tincidunt purus viverra pulvinar.
-    url: "#"
-- name: B.Sc. in Computer Science & Engineering
-  icon: fa-graduation-cap
-  timeframe: 2012-2016
+    # darkLogo: /images/sections/education/bcit.png
+  extracurricularActivities: #(optional)
+  - Focus on advanced computing, machine learning, and software engineering
+  - Developing expertise in AI applications and data-driven solutions
+  - Engaged in research projects combining theory with practical implementation
+
+- name: Master of Science in Analytics
+  icon: fa-chart-line
+  timeframe: Jan 2023 - May 2024
   institution:
-    name: University of XYZ
-    url: "#"
-    logo: /images/sections/education/university.jpg
+    name: University of Southern California (USC)
+    url: "https://www.usc.edu"
+    # logo: /images/sections/education/usc.png
     # Can optionally show a different logo for dark theme
-    # darkLogo: /images/sections/education/university.jpg
-  grade: #(optional)
-    scale: CGPA
-    achieved: 3.5
-    outOf: 4
+    # darkLogo: /images/sections/education/usc.png
   takenCourses: #(optional)
     # if true, the courses will be rendered as a table otherwise it will render as a list and the grades will be hidden.
-    showGrades: true
-    collapseAfter: 3
+    showGrades: false
+    collapseAfter: 4
     courses:
-    - name: Data Structures and Algorithm
-      achieved: 3.75
-      outOf: 4
-    - name: Network Security
-      achieved: 3.80
-      outOf: 4
-    - name: Operating System
-      achieved: 3.5
-      outOf: 4
-    - name: Artificial Intelligent
-      achieved: 3.75
-      outOf: 4
-  publications: #(optional)
-  - title: Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-    url: "#"
-  - title: Fusce eu augue ut odio porttitor pulvinar.
-    url: "#"
+    - name: Machine Learning
+    - name: Statistical Computing
+    - name: Data Mining
+    - name: Predictive Analytics
+    - name: Big Data Analytics
   extracurricularActivities: #(optional)
-  - In vitae facilisis est, eget porta sem.
-  - Vestibulum consectetur lorem justo, at laoreet lorem feugiat et.
-  - Duis sed massa feugiat, ornare justo et, aliquam est.
-  - Pellentesque ut fringilla magna.
-  customSections: #(optional)
-    - name: Thesis
-      content: Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-    - name: Supervisor
-      content: Fusce eu augue ut odio porttitor pulvinar.
-- name: Higher Secondary School Certificate
-  icon: fa-university
-  timeframe: 2010-2012
+  - Completed multiple data science and ML projects including hospital readmission prediction and credit risk modeling
+  - Gained expertise in Python, R, SQL, and data visualization tools
+  - Developed strong foundation in statistical inference and experimental design
+
+- name: Bachelor of Science in Computer Science
+  icon: fa-graduation-cap
+  timeframe: Apr 2018 - Dec 2022
   institution:
-    name: MST College of Science
-    url: "#"
-    logo: /images/sections/education/science_college.png
+    name: University of Oregon (UO)
+    url: "https://www.uoregon.edu"
+    # logo: /images/sections/education/uo.png
     # Can optionally show a different logo for dark theme
-    # darkLogo: /images/sections/education/science_college.png
-  grade: #(optional)
-    scale: GPA
-    achieved: 5
-    outOf: 5
+    # darkLogo: /images/sections/education/uo.png
+  takenCourses: #(optional)
+    showGrades: false
+    collapseAfter: 4
+    courses:
+    - name: Data Structures and Algorithms
+    - name: Operating Systems (CIS415)
+    - name: Scientific Visualization (CIS410)
+    - name: Software Engineering
+    - name: Database Management Systems
+    - name: Computer Networks
   extracurricularActivities: #(optional)
-  - In vitae facilisis est, eget porta sem.
-  - Vestibulum consectetur lorem justo, at laoreet lorem feugiat et.
-  - Duis sed massa feugiat, ornare justo et, aliquam est.
-  - Pellentesque ut fringilla magna.
-- name: Secondary School Certificate
-  icon: fa-school
-  timeframe: 2005-2010
-  institution:
-    name: JK School of Science
-  grade: #(optional)
-    scale: GPA
-    achieved: 4.5
-    outOf: 5
+  - Completed scientific visualization project implementing isosurfacing and volume rendering algorithms in C++
+  - Built strong foundation in computer science fundamentals and software development
+  - Participated in various programming projects and collaborative development

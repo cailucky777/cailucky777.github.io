@@ -11,63 +11,51 @@ section:
 # Your experiences
 experiences:
 - company:
-    name: Example Co.
-    url: "https://www.example.com"
-    location: Dhaka Branch
-    logo: /images/sections/experiences/company1.jpg
+    name: Geek Education
+    url: "https://www.geeked.ca"
+    location: Vancouver, Canada
+    # logo: /images/sections/experiences/geek.png
     # Can optionally show a different logo for dark theme
-    # darkLogo: /images/sections/experiences/company1.jpg
+    # darkLogo: /images/sections/experiences/geek.png
     # company overview
-    overview: Example Co. is a widely recognized company for cloud-native development. It builds tools for Kubernetes.
+    overview: Geek Education provides programming education and mentorship for students in grades 8-12, focusing on Python, Swift, and AI project development.
   positions:
-  - designation: Senior Software Engineer
-    start: Nov 2019
+  - designation: Programming Consulting (Part-time)
+    start: Feb 2025
     # don't provide end date if you are currently working there. It will be replaced by "Present"
     # end: Dec 2020
     # give some points about what was your responsibilities at the company.
     responsibilities:
-    - Design and develop XYZ tool for ABC task
-    - Design, develop and manage disaster recovery tool [Xtool](https://www.example.com) that backup Kubernetes volumes, databases, and cluster's resource definition.
-    - Lead backend team.
-
-  - designation: Junior Software Engineer
-    start: Nov 2017
-    end: Oct 2019
-    responsibilities:
-    - Implement and test xyz feature for abc tool.
-    - Support client for abc tool.
-    - Learn k,d,w technology for xyz.
+    - Taught Python and Swift programming, focusing on explaining core programming concepts and code logic to students (Grade 8-12)
+    - Mentored students on building AI-related projects and preparing for the Swift Student Challenge 2026
+    - Developed customized learning materials and provided one-on-one guidance to help students achieve their programming goals
 
 - company:
-    name: PreExample Co.
-    url: "https://www.example.com"
-    location: Nowhere
-    logo: /images/sections/experiences/company2.jpg
-    # Can optionally show a different logo for dark theme
-    # darkLogo: /images/sections/experiences/company2.jpg
-    overview: PreExample Co. is a gateway company to enter into Example co. So, nothing special here.
+    name: NeoScholar
+    url: "https://www.neoscholar.com"
+    location: Los Angeles, United States
+    # logo: /images/sections/experiences/neoscholar.png
+    overview: NeoScholar is an AI research and consulting firm focused on generative AI applications and business solutions.
   positions:
-  - designation: Software Engineer
-    start: March 2016
-    end: May 2017
+  - designation: AI Research Assistant
+    start: Mar 2024
+    end: Jun 2025
     responsibilities:
-    - Write lots of example codes.
-    - Read lots of examples.
-    - See lots of example videos.
+    - Researched and benchmarked mainstream GenAI and AI media tools, analyzing real-world business use cases and application patterns
+    - Built and demonstrated AI-powered chatbot using Dify to showcase multi-agent and conversational workflows
+    - Evaluated emerging AI technologies and provided strategic recommendations for enterprise adoption
 
 - company:
-    name: Intern Counting Company (ICC).
-    url: "https://www.example.com"
-    location: Intern Land
-    logo: /images/sections/experiences/company3.jpg
-    # Can optionally show a different logo for dark theme
-    # darkLogo: /images/sections/experiences/company3.jpg
-    overview: Intern counting Company (ICC) is responsible for counting worldwide intern Engineers.
+    name: Chinese Securities Co., Ltd
+    location: Beijing, China
+    # logo: /images/sections/experiences/securities.png
+    overview: A leading securities company in China specializing in financial analysis and investment research.
   positions:
-  - designation: Intern
-    start: Jun 2015
-    end: Jan 2016
+  - designation: AI Analyst Intern
+    start: May 2023
+    end: Sep 2023
     responsibilities:
-    - Count lost of interns.
-    - Count more interns.
-    - Count me as an intern.
+    - Monitored global trends in Large Language Models (LLM) and developed comprehensive database tracking industry developments
+    - Independently authored 5 detailed analytical reports on LLM and AIGC (AI-Generated Content) applications
+    - Crafted visual aids to clarify complex concepts, enhancing stakeholder understanding and decision-making
+    - Conducted competitive analysis and market research on emerging AI technologies in the financial sector

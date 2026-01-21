@@ -26,12 +26,17 @@ languages:
     languageName: English
     title: "Luying Cai's Portfolio"
     weight: 1
-  bn:
-    languageCode: bn
-    languageName: বাংলা
-    title: জনের ব্লগ
+  zh:
+    languageCode: zh
+    languageName: 中文
+    title: "蔡璐莹的作品集"
     weight: 2
-# default language for the content
+  ja:
+    languageCode: ja
+    languageName: 日本語
+    title: "蔡璐莹のポートフォリオ"
+    weight: 3
+
 defaultContentLanguage: en
 
 

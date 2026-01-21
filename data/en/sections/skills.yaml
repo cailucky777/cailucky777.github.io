@@ -13,59 +13,80 @@ section:
 buttons:
 - name: All
   filter: "all"
-- name: Basic
-  filter: "basic"
-- name: Language
-  filter: "language"
-- name: Container
-  filter: "container"
-- name: Others
-  filter: "others"
+- name: Programming
+  filter: "programming"
+- name: Data Science & ML
+  filter: "data-ml"
+- name: Tools & Platforms
+  filter: "tools"
+- name: Languages
+  filter: "languages"
 
 # Your Skills.
 # Give a summary of you each skill in the summary section.
 skills:
-- name: Kubernetes
-  logo: /images/sections/skills/kubernetes.png
-  summary: "Capable of deploying, managing application on Kubernetes. Experienced in writing Kubernetes controllers for CRDs."
-  categories: ["container"]
-  url: "https://kubernetes.io/"
+- name: Python
+  logo: /images/sections/skills/python.png
+  summary: "Expert in Python for data science and machine learning. Proficient with NumPy, Pandas, Scikit-Learn, and building end-to-end ML pipelines."
+  categories: ["programming", "data-ml"]
+  url: "https://www.python.org/"
 
-- name: Go Development
-  logo: /images/sections/skills/go.png
-  summary: "Using as the main language for professional development. Capable of writing scalable, testable, and maintainable program."
-  categories: ["basic", "language"]
-  url: "https://golang.org/"
+- name: Machine Learning
+  logo: /images/sections/skills/ml.png
+  summary: "Experienced in supervised learning, feature engineering, model evaluation, and deployment. Built predictive models for healthcare and finance with XGBoost, LightGBM, and deep learning frameworks."
+  categories: ["data-ml"]
 
-- name: Cloud Computing
-  logo: /images/sections/skills/cloud.png
-  summary: "Worked with most of the major clouds such as GCP, AWS, Azure etc."
-  categories: ["others"]
+- name: SQL & Databases
+  logo: /images/sections/skills/database.png
+  summary: "Proficient in SQL querying, data cleaning, transformation, and migration. Experienced with PostgreSQL, BigQuery, and database optimization."
+  categories: ["programming", "tools"]
+
+- name: Data Analytics
+  logo: /images/sections/skills/analytics.png
+  summary: "Strong background in EDA, statistical inference, and data visualization. Skilled in using Tableau and creating insights from complex datasets."
+  categories: ["data-ml", "tools"]
+
+- name: Full-Stack Development
+  logo: /images/sections/skills/react.png
+  summary: "Built modern web applications using Next.js, TypeScript, and React. Experienced with Vercel AI SDK, shadcn/ui, and responsive design with Tailwind CSS."
+  categories: ["programming"]
+  url: "https://nextjs.org/"
+
+- name: Git & Version Control
+  logo: /images/sections/skills/git.png
+  summary: "Experienced with Git workflows, collaborative development, and code review processes. Maintain multiple open-source projects on GitHub."
+  categories: ["tools"]
+  url: "https://git-scm.com/"
 
 - name: Docker
   logo: /images/sections/skills/docker.svg
-  summary: "Write most of the programs as dockerized container. Experienced with multi-stage, multi-arch build process."
-  categories: ["container"]
+  summary: "Containerize applications for deployment and development. Familiar with Docker Compose and multi-stage builds."
+  categories: ["tools"]
   url: "https://www.docker.com/"
 
-- name: Prometheus
-  logo: /images/sections/skills/prometheus.png
-  summary: "Capable of setup, configure Prometheus metrics. Experienced with PromQL, AlertManager. Also, experienced with writing metric exporters."
-  categories: ["basic"]
-  url: "https://prometheus.io/"
+- name: Japanese (JLPT N1)
+  logo: /images/sections/skills/japanese.png
+  summary: "Native-level proficiency in Japanese (JLPT N1 certified). Fluent in reading, writing, and professional communication."
+  categories: ["languages"]
 
-- name: Linux
-  logo: /images/sections/skills/linux.png
-  summary: "Using as the main operating system. Capable of writing bash/shell scripts."
-  categories: ["others"]
+- name: Multilingual
+  logo: /images/sections/skills/language.png
+  summary: "Fluent in English, Japanese (JLPT N1), and Chinese. Basic proficiency in French. Able to work effectively in multicultural environments."
+  categories: ["languages"]
 
-- name: Git
-  logo: /images/sections/skills/git.png
-  summary: "Experienced with git-based development. Mostly, use Github. Also, have experience in working with GitLab."
-  categories: ["basic"]
-  url: "https://git-scm.com/"
+- name: R Programming
+  logo: /images/sections/skills/r.png
+  summary: "Proficient in R for statistical analysis and data visualization. Experienced with data manipulation and statistical modeling."
+  categories: ["programming", "data-ml"]
+  url: "https://www.r-project.org/"
 
-- name: C++
-  logo: /images/sections/skills/c++.png
-  summary: "Know basic C/C++ programming. Used for contest programming and problem solving."
-  categories: ["basic", "language"]
+- name: Tableau
+  logo: /images/sections/skills/tableau.png
+  summary: "Create interactive dashboards and data visualizations. Transform complex data into actionable insights for stakeholders."
+  categories: ["tools", "data-ml"]
+  url: "https://www.tableau.com/"
+
+- name: Research & Documentation
+  logo: /images/sections/skills/documentation.png
+  summary: "Strong technical writing skills. Authored analytical reports on LLM and AIGC applications. Create clear documentation for systems and processes."
+  categories: ["tools"]

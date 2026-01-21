@@ -1,0 +1,18 @@
+# some information about you
+name: "Luying Cai"
+nickname: "Luying"
+# greeting message before your name. it will default to "Hi! I am" if not provided
+greeting: "Hi, I am"
+image: "images/author/luying.png"
+# give your some contact information. they will be used in the footer
+contactInfo:
+  email: "cailucky777@gmail.com"
+  github: cailucky777
+  linkedin: savina-cai
+
+# some summary about what you do
+summary:
+  - I am a Creative Storyteller
+  - I love exploring coffee shops
+  - I enjoy writing and sharing experiences
+  - I am passionate about design and aesthetics

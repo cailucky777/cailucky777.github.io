@@ -69,6 +69,14 @@ theme = "Scholar-Lite"
 
   # Recent News
   [[params.news]]
+    date = "2025-09"
+    content = "🔥 Starting **Wildfire Prediction** project — dynamic model switching for real-time CV inference"
+
+  [[params.news]]
+    date = "2025-06"
+    content = "☁️ Joining **Salesforce CRM** internship — enterprise AI integration"
+
+  [[params.news]]
     date = "2025-04"
     content = "🤖 Built **Local Docs Agent** — a RAG-powered document Q&A system with LangChain + FAISS"
 

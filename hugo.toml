@@ -1,0 +1,101 @@
+baseURL = "https://cailucky777.github.io/"
+languageCode = "en-us"
+title = "Savina (Luying) Cai"
+theme = "Scholar-Lite"
+
+[markup]
+  [markup.goldmark]
+    [markup.goldmark.renderer]
+      unsafe = true
+      hardWraps = false
+      xhtml = false
+    [markup.goldmark.parser]
+      attribute = true
+      autoHeadingID = true
+      autoHeadingIDType = "github"
+      wrapStandAloneImageWithinParagraph = false
+    [markup.goldmark.extensions]
+      typographer = false
+      linkify = false
+      strikethrough = false
+      definitionList = false
+      footnote = false
+      table = true
+      taskList = false
+    [markup.goldmark.extensions.passthrough]
+      enable = true
+      [markup.goldmark.extensions.passthrough.delimiters]
+        block = [['$$', '$$'], ['\\[', '\\]']]
+        inline = [['$', '$'], ['\\(', '\\)']]
+  [markup.highlight]
+    style = 'github'
+    lineNos = false
+    lineNumbersInTable = false
+    anchorLineNos = false
+    codeFences = true
+    guessSyntax = true
+    noClasses = false
+    tabWidth = 4
+
+[taxonomies]
+  venue = "venue"
+  tag = "tags"
+
+[params]
+  profilePhoto = "/images/profile.png"
+  bio = """**Full-Stack AI Engineer** · **ML Researcher** · **CS Educator**
+
+  MSc Applied Computing @ [BCIT](https://www.bcit.ca) · MS Analytics @ [USC](https://www.usc.edu) · BS CS @ [UOregon](https://www.uoregon.edu)
+
+  I build LLM-powered applications, RAG systems, and end-to-end ML pipelines. My work spans agentic AI workflows, explainable AI for cybersecurity, computer vision for medical imaging, and full-stack AI products.
+
+  Currently seeking **Full-Stack AI Engineer · ML Engineer · SDE** opportunities."""
+
+  [[params.social]]
+    name = "GitHub"
+    url = "https://github.com/cailucky777"
+
+  [[params.social]]
+    name = "LinkedIn"
+    url = "https://www.linkedin.com/in/savina-cai/"
+
+  [[params.social]]
+    name = "Google Scholar"
+    url = "https://scholar.google.com/"
+
+  [[params.social]]
+    name = "Email"
+    url = "mailto:savinacai@gmail.com"
+
+  # Recent News
+  [[params.news]]
+    date = "2025-04"
+    content = "🤖 Built **Local Docs Agent** — a RAG-powered document Q&A system with LangChain + FAISS"
+
+  [[params.news]]
+    date = "2025-03"
+    content = "🏙️ Launched **Vancouver City Brain** — urban intelligence system with geospatial ML"
+
+  [[params.news]]
+    date = "2025-02"
+    content = "👩‍🏫 Started as **Programming Consultant** at Geek Education, teaching Swift & Python to K-12 students"
+
+  [[params.news]]
+    date = "2025-01"
+    content = "🔬 Completed **Explainable Malware Detection** research — SHAP + Grad-CAM interpretability"
+
+  [[params.news]]
+    date = "2024-12"
+    content = "📚 Released **[GeekResources](https://github.com/cailucky777/GeekResources)** — open-source K-12 CS curriculum (47+ files)"
+
+  [[params.news]]
+    date = "2024-10"
+    content = "🌍 Shipped **TeamSync Polyglot** — meeting AI platform with Google Gemma LLM integration"
+
+  [[params.news]]
+    date = "2024-09"
+    content = "🎓 Started **MSc Applied Computing** at BCIT"
+
+  [[params.news]]
+    date = "2024-05"
+    content = "🎓 Graduated with **MS in Analytics** from USC ✌️"

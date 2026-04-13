@@ -33,6 +33,8 @@ jobs:
         with:
           submodules: recursive
           fetch-depth: 0
+      - name: Remove theme demo content
+        run: rm -rf themes/Scholar-Lite/content
       - name: Setup Pages
         id: pages
         uses: actions/configure-pages@v5

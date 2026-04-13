@@ -8,10 +8,10 @@ section:
   template: sections/about.html
 
 # your designation
-designation: MS in Applied Computing
+designation: "Full-Stack AI Engineer"
 # your company information
 company:
-  name: BCIT
+  name: "BCIT (MSc Applied Computing)"
   url: "https://www.bcit.ca"
 
 # your resume. this file path should be relative to you "static" directory
@@ -19,14 +19,14 @@ company:
 # resume: "files/resume.pdf"
 
 # a summary about you
-summary: 'I am currently pursuing my Master of Science in Applied Computing at BCIT, I have a strong background in building AI-powered applications and conducting data-driven research. My experience spans from developing intelligent meeting platforms to building predictive models for healthcare and finance. I am passionate about leveraging technology to solve real-world problems and creating impactful solutions through data science and artificial intelligence.'
+summary: 'I am a Full-Stack AI Engineer with an MS in Analytics from USC and a BS in Computer Science from UOregon, currently completing my MSc in Applied Computing at BCIT. I build production-grade LLM applications and RAG systems using LangChain, design explainable ML pipelines with SHAP and Grad-CAM, and develop full-stack AI products with Next.js and Python. I am targeting AI Engineer roles at big tech companies where I can ship intelligent systems at scale.'
 
 # your social links
 # give as many as you want. use font-awesome for the icons.
 socialLinks:
 - name: Email
   icon: "fas fa-envelope"
-  url: "mailto:lcai25@my.bcit.ca"
+  url: "mailto:savinacai@gmail.com"
 
 - name: Github
   icon: "fab fa-github"
@@ -47,26 +47,26 @@ resourceLinks:
 # You can also show a circular bar indicating the level of expertise on a certain skill
 badges:
 - type: soft-skill-indicator
-  name: Python & Data Science
+  name: LLM & Agentic AI
   percentage: 90
   color: blue
 
 - type: soft-skill-indicator
-  name: Machine Learning
-  percentage: 85
+  name: Machine Learning & CV
+  percentage: 88
   color: "#00adb5"
 
 - type: soft-skill-indicator
   name: Full-Stack Development
-  percentage: 80
+  percentage: 85
   color: orange
 
 - type: soft-skill-indicator
-  name: Data Analytics
+  name: Data Analytics (USC)
   percentage: 90
   color: yellow
 
 - type: soft-skill-indicator
-  name: Research & Documentation
-  percentage: 85
+  name: iOS & AR Development
+  percentage: 80
   color: green

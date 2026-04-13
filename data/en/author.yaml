@@ -1,16 +1,17 @@
 # some information about you
-name: "Luying Cai"
-nickname: "Luying"
+name: "Savina (Luying) Cai"
+nickname: "Savina"
 greeting: "Hi, I am"
 image: "images/author/luying.png"
 contactInfo:
-  email: "lcai25@my.bcit.ca"
+  email: "savinacai@gmail.com"
   phone: "778-788-8023"
   github: cailucky777
+  linkedin: savina-cai
 
 summary:
-  - I am a Data Scientist & AI Engineer
-  - I specialize in Machine Learning and Analytics
-  - I build AI-powered applications
-  - I am pursuing MS in Applied Computing at BCIT
-  - I am passionate about solving real-world problems with data
+  - I am a Full-Stack AI Engineer & ML Researcher
+  - I build LLM-powered applications and RAG systems
+  - I hold degrees from USC, UOregon, and BCIT
+  - I specialize in Explainable AI and Computer Vision
+  - I ship AI products and teach the next generation to code

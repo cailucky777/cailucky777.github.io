@@ -1,8 +1,8 @@
 # section information
 section:
-  name: Publications
+  name: "Technical Reports & Research Projects"
   id: publications
-  enable: false
+  enable: true
   weight: 6
   showOnNavbar: true
   # Can optionally hide the title in sections
@@ -12,71 +12,97 @@ section:
 buttons:
 - name: All
   filter: "all"
-- name: "Machine Learning"
-  filter: "machinelearning"
-- name: "Image Processing"
-  filter: "image-processing"
-- name: Security
-  filter: "security"
+- name: "Explainable AI"
+  filter: "explainable-ai"
+- name: "Computer Vision"
+  filter: "computer-vision"
+- name: "NLP & LLM"
+  filter: "nlp-llm"
+- name: "Data Science"
+  filter: "data-science"
 
 # your publications
 publications:
-- title: An Example Paper on Machine Learning
+- title: "Explainable Malware Detection with LightGBM, ResNet-18, SHAP, and Grad-CAM"
   publishedIn:
-    name: 2020 IEEE Region Symposium (TENSYMP)
-    date: 7 June 2020
-    url: https://example.com
+    name: "BCIT Applied Computing Research"
+    date: "2025"
+    url: https://github.com/cailucky777/malware-detection-explainable-ml
   authors:
-  - name: Dr. Madman
-    url: https://example.com
-  - name: Dr. Lessmad
-    url: https://example.com
-  - name: Dr. Moremad
-    url: https://example.com
-  - name: Dr. Goodman
-    url: https://example.com
+  - name: Savina (Luying) Cai
+    url: https://github.com/cailucky777
   paper:
-    summary: Voluptate in id id voluptate laboris. Minim mollit aliquip sit aliqua ut exercitation voluptate eiusmod consequat pariatur sunt enim veniam. Velit esse tempor laboris anim tempor officia. Magna non labore duis do esse sit do ipsum culpa. Officia consequat id non duis culpa dolor. Excepteur magna non nostrud cupidatat aute aliqua aliquip.
-    url: https://example.com
-  categories: ["machinelearning","image-processing"]
-  tags: ["Machine Learning", "Autonomous Driving", "Computer Vision"]
+    summary: "Presents a dual-model approach to malware detection combining LightGBM for tabular PE feature classification and ResNet-18 for malware binary visualization. Integrates SHAP for global and local feature-importance explanations and Grad-CAM for CNN attention mapping, enabling transparent and interpretable predictions critical for cybersecurity operations."
+    url: https://github.com/cailucky777/malware-detection-explainable-ml
+  categories: ["explainable-ai"]
+  tags: ["Explainable AI", "Malware Analysis", "SHAP", "Grad-CAM"]
 
-- title: An Sample Paper on Image Processing
+- title: "Chest X-Ray Pneumonia Detection with Convolutional Neural Networks"
   publishedIn:
-    name: 2020 IEEE Region Symposium (TENSYMP)
-    date: 7 June 2020
-    url: https://example.com
+    name: "BCIT COMP 9130 — Deep Learning Project"
+    date: "2025"
+    url: https://github.com/cailucky777/mini-project-5
   authors:
-  - name: Dr. Madman
-    url: https://example.com
-  - name: Dr. Lessmad
-    url: https://example.com
-  - name: Dr. Moremad
-    url: https://example.com
-  - name: Dr. Goodman
-    url: https://example.com
+  - name: Savina (Luying) Cai
+    url: https://github.com/cailucky777
   paper:
-    summary: Ullamco magna minim cupidatat Lorem ea ex aliqua fugiat et. Dolor quis cillum ea duis irure et commodo aliquip consectetur ullamco labore ut anim nisi. Commodo reprehenderit est consectetur tempor adipisicing occaecat exercitation amet do aliquip dolor do irure. Labore officia ut magna pariatur reprehenderit et ex sit sunt. Magna proident ullamco adipisicing sit.
-    url: https://example.com
-  categories: ["image-processing"]
-  tags: ["Image Processing", "Computer Vision"]
+    summary: "Develops a deep learning pipeline for automated pneumonia detection from chest X-ray images using custom CNN architectures and transfer learning in PyTorch. Evaluates model performance through systematic ablation studies, data augmentation strategies, and learning rate scheduling to achieve clinically relevant classification accuracy."
+    url: https://github.com/cailucky777/mini-project-5
+  categories: ["computer-vision"]
+  tags: ["CNN", "Medical Imaging", "PyTorch"]
 
-- title: An Example Paper on Security
+- title: "Blood Cell Detection and Classification with YOLOv8"
   publishedIn:
-    name: 2020 IEEE Region Symposium (TENSYMP)
-    date: 7 June 2020
-    url: https://example.com
+    name: "BCIT COMP 9130 — Object Detection Project"
+    date: "2025"
+    url: https://github.com/cailucky777/mini-project-7
   authors:
-  - name: Dr. Madman
-    url: https://example.com
-  - name: Dr. Lessmad
-    url: https://example.com
-  - name: Dr. Moremad
-    url: https://example.com
-  - name: Dr. Goodman
-    url: https://example.com
+  - name: Savina (Luying) Cai
+    url: https://github.com/cailucky777
   paper:
-    summary: Dolor ad cupidatat pariatur nulla ipsum ex ullamco nisi anim ullamco. Dolore elit esse in exercitation minim aliqua. Amet velit incididunt magna laboris. Proident reprehenderit deserunt ad officia duis dolor. Tempor nostrud ullamco ullamco sint deserunt cupidatat irure minim consectetur nulla adipisicing sunt.
-    url: https://example.com
-  categories: ["security"]
-  tags: ["Machine Learning", "Autonomous Driving", "Machine Vision"]
+    summary: "Implements a real-time multi-class blood cell detection system using the YOLOv8 anchor-free object detection framework on microscopy images. Optimizes detection performance through custom augmentation pipelines, hyperparameter search, and evaluation on medical imaging benchmarks."
+    url: https://github.com/cailucky777/mini-project-7
+  categories: ["computer-vision"]
+  tags: ["YOLOv8", "Object Detection", "Medical Imaging"]
+
+- title: "Semantic Segmentation for Post-Disaster Building Damage Assessment (U-Net)"
+  publishedIn:
+    name: "BCIT COMP 9130 — Semantic Segmentation Project"
+    date: "2025"
+    url: https://github.com/cailucky777/mini-project-8
+  authors:
+  - name: Savina (Luying) Cai
+    url: https://github.com/cailucky777
+  paper:
+    summary: "Designs a U-Net encoder-decoder architecture with skip connections for pixel-level segmentation of structural damage in post-disaster satellite imagery. Addresses class imbalance and spatial resolution challenges to deliver actionable damage severity maps for disaster response coordination."
+    url: https://github.com/cailucky777/mini-project-8
+  categories: ["computer-vision"]
+  tags: ["U-Net", "Semantic Segmentation", "Disaster Response"]
+
+- title: "Vancouver City Brain: Urban Intelligence with Geospatial Machine Learning"
+  publishedIn:
+    name: "Collaborative Research Project"
+    date: "2025"
+    url: https://github.com/cailucky777/vancouver-city-brain
+  authors:
+  - name: Savina (Luying) Cai
+    url: https://github.com/cailucky777
+  paper:
+    summary: "Constructs an urban intelligence platform integrating geospatial data pipelines with machine learning models for city-scale analysis of Vancouver. Combines spatial feature engineering, predictive modeling, and interactive visualization to support data-driven urban planning and resource allocation decisions."
+    url: https://github.com/cailucky777/vancouver-city-brain
+  categories: ["data-science"]
+  tags: ["Geospatial ML", "Urban Computing", "Data Engineering"]
+
+- title: "RAG-based Document Question-Answering with LangChain"
+  publishedIn:
+    name: "Independent Research Project"
+    date: "2025"
+    url: https://github.com/cailucky777/local-docs-agent
+  authors:
+  - name: Savina (Luying) Cai
+    url: https://github.com/cailucky777
+  paper:
+    summary: "Engineers a retrieval-augmented generation (RAG) system using LangChain for intelligent document question-answering over local PDF, Markdown, and text files. Implements vector embedding pipelines, semantic similarity search, and source-cited response generation to demonstrate practical LLM application architecture."
+    url: https://github.com/cailucky777/local-docs-agent
+  categories: ["nlp-llm"]
+  tags: ["RAG", "LangChain", "LLM", "Vector Search"]

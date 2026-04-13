@@ -13,8 +13,8 @@ buttons:
   filter: "all"
 - name: Programming
   filter: "programming"
-- name: Data Science & ML
-  filter: "data-ml"
+- name: AI & ML
+  filter: "ai-ml"
 - name: Tools & Platforms
   filter: "tools"
 - name: Languages
@@ -22,52 +22,42 @@ buttons:
 
 # Your Skills.
 skills:
-- name: Python
-  summary: "Expert in Python for data science and machine learning. Proficient with NumPy, Pandas, Scikit-Learn, and building end-to-end ML pipelines."
-  categories: ["programming", "data-ml"]
+- name: "Python & ML Ecosystem"
+  summary: "Expert in Python for AI/ML engineering. Proficient with NumPy, Pandas, Scikit-Learn, PyTorch, and TensorFlow for building end-to-end machine learning pipelines and deep learning models."
+  categories: ["programming", "ai-ml"]
 
-- name: Machine Learning
-  summary: "Experienced in supervised learning, feature engineering, model evaluation, and deployment. Built predictive models for healthcare and finance with XGBoost, LightGBM, and deep learning frameworks."
-  categories: ["data-ml"]
+- name: "LLM & Agentic AI"
+  summary: "Build LLM-powered applications using LangChain, RAG architectures, Claude API, and GPT API. Experienced in prompt engineering, vector databases, and agentic workflow design."
+  categories: ["ai-ml"]
 
-- name: SQL & Databases
-  summary: "Proficient in SQL querying, data cleaning, transformation, and migration. Experienced with PostgreSQL, BigQuery, and database optimization."
-  categories: ["programming", "tools"]
+- name: "Deep Learning & Computer Vision"
+  summary: "Design and train CNN, YOLO, U-Net, and ResNet architectures for image classification, object detection, and semantic segmentation. Skilled in transfer learning and model optimization."
+  categories: ["ai-ml"]
 
-- name: Data Analytics
-  summary: "Strong background in EDA, statistical inference, and data visualization. Skilled in using Tableau and creating insights from complex datasets."
-  categories: ["data-ml", "tools"]
+- name: "Data Analytics & Visualization"
+  summary: "USC-trained in statistical modeling, EDA, and data visualization. Proficient with Tableau, Matplotlib, and advanced analytics for transforming complex datasets into actionable insights."
+  categories: ["ai-ml", "tools"]
 
-- name: Full-Stack Development
-  summary: "Built modern web applications using Next.js, TypeScript, and React. Experienced with Vercel AI SDK, shadcn/ui, and responsive design with Tailwind CSS."
+- name: "TypeScript & React/Next.js"
+  summary: "Build full-stack web applications with AI integration using TypeScript, React, and Next.js. Experienced with Vercel AI SDK, shadcn/ui, and modern frontend architecture."
   categories: ["programming"]
 
-- name: Git & Version Control
-  logo: /images/sections/skills/git.png
-  summary: "Experienced with Git workflows, collaborative development, and code review processes. Maintain multiple open-source projects on GitHub."
+- name: "Swift & iOS Development"
+  summary: "Develop native iOS applications with SwiftUI, ARKit, RealityKit, and Core ML. Build augmented reality experiences and on-device ML inference applications."
+  categories: ["programming"]
+
+- name: "SQL & Databases"
+  summary: "Proficient in PostgreSQL, MongoDB, and BigQuery for data storage and retrieval. Experienced in designing data pipelines, query optimization, and database architecture."
+  categories: ["programming", "tools"]
+
+- name: "Cloud & DevOps"
+  summary: "Deploy and manage applications using Docker, GitHub Actions, AWS, and Vercel. Experienced with CI/CD pipelines, containerization, and cloud infrastructure."
   categories: ["tools"]
 
-- name: Docker
-  logo: /images/sections/skills/docker.svg
-  summary: "Containerize applications for deployment and development. Familiar with Docker Compose and multi-stage builds."
+- name: "Git & Open Source"
+  summary: "Maintain multiple open-source repositories including a 47+ file K-12 teaching hub. Experienced with collaborative Git workflows, code review, and open-source contribution."
   categories: ["tools"]
 
-- name: Japanese (JLPT N1)
-  summary: "Native-level proficiency in Japanese (JLPT N1 certified). Fluent in reading, writing, and professional communication."
+- name: "Multilingual Communication"
+  summary: "English fluent, Japanese JLPT N1 certified, and Chinese native speaker. Effective communicator in multicultural and cross-functional team environments."
   categories: ["languages"]
-
-- name: Multilingual Communication
-  summary: "Fluent in English, Japanese (JLPT N1), and Chinese. Basic proficiency in French. Able to work effectively in multicultural environments."
-  categories: ["languages"]
-
-- name: R Programming
-  summary: "Proficient in R for statistical analysis and data visualization. Experienced with data manipulation and statistical modeling."
-  categories: ["programming", "data-ml"]
-
-- name: Tableau & Visualization
-  summary: "Create interactive dashboards and data visualizations. Transform complex data into actionable insights for stakeholders."
-  categories: ["tools", "data-ml"]
-
-- name: Research & Documentation
-  summary: "Strong technical writing skills. Authored analytical reports on LLM and AIGC applications. Create clear documentation for systems and processes."
-  categories: ["tools"]

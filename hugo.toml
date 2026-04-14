@@ -69,12 +69,12 @@ theme = "Scholar-Lite"
 
   # Recent News
   [[params.news]]
-    date = "2025-09"
-    content = "🔥 Starting **Wildfire Prediction** project — dynamic model switching for real-time CV inference"
+    date = "2026-05"
+    content = "🧠 Starting **Mitacs Research Internship** @ Blue Pearl Financial — AI-Powered Sales Intelligence with LLM + Salesforce CRM (8 months)"
 
   [[params.news]]
-    date = "2025-06"
-    content = "☁️ Joining **Salesforce CRM** internship — enterprise AI integration"
+    date = "2026-04"
+    content = "🔥 Building **Serverless Risk-Aware Model Routing** — adaptive YOLO11n/YOLOv9m inference for wildfire detection via CWFIS risk data"
 
   [[params.news]]
     date = "2025-04"

@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import Link from "next/link";
-import { ArrowUpRight, QrCode } from "lucide-react";
+import { ArrowUpRight } from "lucide-react";
 import { SectionNav } from "@/components/SectionNav";
 import { SiteFooter } from "@/components/SiteFooter";
 import { featured, playlists } from "@/data/playlists";
@@ -16,13 +16,6 @@ function spotifyEmbed(uri: string) {
 
 function spotifyShareUrl(uri: string) {
   return `https://open.spotify.com/${uri}`;
-}
-
-function qrUrl(target: string) {
-  // Free QR proxy. Replace with a self-hosted or `qrcode` lib later.
-  return `https://api.qrserver.com/v1/create-qr-code/?size=300x300&margin=10&data=${encodeURIComponent(
-    target
-  )}`;
 }
 
 export default function MusicPage() {
@@ -44,7 +37,16 @@ export default function MusicPage() {
       </section>
 
       <section className="mx-auto w-full max-w-6xl px-6 pb-12">
-        <div className="grid grid-cols-1 gap-6 rounded-3xl border border-[color:var(--color-rule)] bg-[color:var(--color-cream)] p-6 lg:grid-cols-[1fr_280px] lg:p-8">
+        <div className="rounded-3xl border border-[color:var(--color-rule)] bg-[color:var(--color-cream)] p-6 lg:p-8">
+          <p className="font-mono text-[11px] uppercase tracking-[0.18em] text-[color:var(--color-ink-mute)]">
+            Featured
+          </p>
+          <h2 className="mt-2 font-serif text-2xl leading-tight">
+            {featured.title}
+          </h2>
+          <p className="mt-2 mb-5 text-sm text-[color:var(--color-ink-soft)]">
+            {featured.vibe}
+          </p>
           <div className="overflow-hidden rounded-2xl border border-[color:var(--color-rule)] bg-black/5">
             <iframe
               title={`Spotify · ${featured.title}`}
@@ -56,40 +58,6 @@ export default function MusicPage() {
               allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"
             />
           </div>
-          <aside className="flex flex-col justify-between gap-6">
-            <div>
-              <p className="font-mono text-[11px] uppercase tracking-[0.18em] text-[color:var(--color-ink-mute)]">
-                Featured
-              </p>
-              <h2 className="mt-2 font-serif text-2xl leading-tight">
-                {featured.title}
-              </h2>
-              <p className="mt-2 text-sm text-[color:var(--color-ink-soft)]">
-                {featured.vibe}
-              </p>
-            </div>
-            <div className="flex flex-col items-center gap-3 rounded-2xl border border-[color:var(--color-rule)] bg-[color:var(--color-paper)] p-4">
-              {/* eslint-disable-next-line @next/next/no-img-element */}
-              <img
-                src={qrUrl(spotifyShareUrl(featured.spotifyUri))}
-                alt="Scan to open in Spotify"
-                width={160}
-                height={160}
-                className="rounded-md"
-              />
-              <p className="inline-flex items-center gap-1.5 font-mono text-[10px] uppercase tracking-[0.18em] text-[color:var(--color-ink-mute)]">
-                <QrCode className="h-3 w-3" /> scan with Spotify
-              </p>
-              <a
-                href={spotifyShareUrl(featured.spotifyUri)}
-                target="_blank"
-                rel="noreferrer"
-                className="text-xs underline underline-offset-4 hover:text-[color:var(--color-ink)]"
-              >
-                or open in browser
-              </a>
-            </div>
-          </aside>
         </div>
       </section>
 

@@ -1,41 +1,81 @@
-# toha-example-site
+# savinacai.com
 
-[![Netlify Status](https://api.netlify.com/api/v1/badges/b1b93b02-f278-440b-ae1b-304e9f4c4ab5/deploy-status)](https://app.netlify.com/sites/toha/deploys) [![Build Status](https://img.shields.io/endpoint.svg?url=https%3A%2F%2Factions-badge.atrox.dev%2Fhugo-toha%2Fhugo-toha.github.io%2Fbadge%3Fref%3Dmain&style=flat)](https://actions-badge.atrox.dev/hugo-toha/hugo-toha.github.io/goto?ref=main) ![Repository Size](https://img.shields.io/github/repo-size/hugo-themes/toha-example-site) ![Contributor](https://img.shields.io/github/contributors/hugo-themes/toha-example-site) ![Last Commit](https://img.shields.io/github/last-commit/hugo-themes/toha-example-site) ![License](https://img.shields.io/github/license/hugo-themes/toha-example-site) ![Open Issues](https://img.shields.io/github/issues/hugo-themes/toha-example-site?color=important) ![Open Pull Requests](https://img.shields.io/github/issues-pr/hugo-themes/toha-example-site?color=yellowgreen) ![Security Headers](https://img.shields.io/security-headers?url=https%3A%2F%2Fhugo-themes.github.io/toha-example-site%2F) [![This project is using Percy.io for visual regression testing.](https://percy.io/static/images/percy-badge.svg)](https://percy.io/b7cb60ab/hugo-themes.github.io/toha-example-site)
+Personal site for **Savina (Luying) Cai** — a four-tab home covering pro work, off-hours notebooks, a small paper studio, and a music shelf.
 
-An example hugo static site with Toha theme.
+## Stack
 
-Attributions:
+- **Next.js 15** (App Router, RSC) + **TypeScript**
+- **Tailwind CSS v4** with a custom warm-paper palette
+- **next-mdx-remote** for filesystem-backed content collections
+- Deployed on **Vercel** with a custom domain
 
-- <a href='https://www.freepik.com/vectors/business'>Business vector created by studiogstock - www.freepik.com</a>
-
-## Requirements
-
-We use [jdx/mise](https://github.com/jdx/mise) to manage dependencies. Mise takes care of installing `hugo`, `go`, `nodes` and other tools to appropriate versions. Please, install it following the instruction from [here](https://mise.jdx.dev/getting-started.html).
-
-## Running Locally
-
-- Install dependencies
+## Layout
 
 ```
-mise install
+/             Bento home — four tiles
+/pro          Professional: about, experience, projects, skills, education
+/life         Hobby index
+/life/vinyl   Photo gallery of records
+/life/kendo   Practice timeline
+/life/ski     Trip timeline
+/life/pilates Reformer log
+/studio       UanLearn Studio — paper goods showcase
+/music        Spotify embeds + scannable QR
 ```
 
-- Run hugo server
+## Authoring content
 
-```
-mise run server
+Every hobby is a folder under `content/`. Drop a new `.mdx` file; the site renders it on the next build.
+
+### Vinyl entry — `content/vinyl/<slug>.mdx`
+
+```mdx
+---
+title: "Album Title"
+artist: "Artist"
+year: 2026
+label: "Label · pressing notes"
+cover: "https://example.com/cover.jpg"
+bought: "2026-04-12"
+rating: 5
+---
+
+Free-form notes here.
 ```
 
-## Updating theme
+### Timeline entry — `content/{kendo,ski,pilates}/<date>-<slug>.mdx`
 
-- To update theme to latest release, run:
+```mdx
+---
+title: "Entry title"
+date: "2026-04-12"
+location: "Optional"
+tags: ["tag-a", "tag-b"]
+---
 
-```
-mise run update
+Markdown / MDX body.
 ```
 
-- To update theme to latest commit from `main` brnach, run:
+## Editable surfaces
 
+- **Profile + bio** — `src/lib/site.ts`
+- **Pro page data** (projects, experience, skills, education) — `src/data/pro.ts`
+- **Studio items** — `src/data/studio.ts`
+- **Music playlists** — `src/data/playlists.ts`
+- **Hobby copy** (titles, blurbs, accent colors) — `src/lib/hobbies.ts`
+
+## Local development
+
+```bash
+npm install
+npm run dev      # http://localhost:3000
+npm run typecheck
+npm run build
 ```
-mise run update-to-main
-```
+
+## Deployment
+
+1. Connect this repository to Vercel — framework preset auto-detects Next.js.
+2. Add the custom domain (e.g. `savinacai.com`) in Vercel → Settings → Domains.
+3. Point the domain's DNS to Vercel (`A` to `76.76.21.21`, or `CNAME` to `cname.vercel-dns.com`).
+4. Each push to `main` triggers a production deploy; PRs get preview URLs.

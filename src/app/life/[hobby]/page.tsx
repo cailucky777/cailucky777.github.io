@@ -7,24 +7,10 @@ import { SectionNav } from "@/components/SectionNav";
 import { SiteFooter } from "@/components/SiteFooter";
 import { MDX } from "@/components/MDX";
 import { hobbies, findHobby } from "@/lib/hobbies";
-import { readCollection } from "@/lib/content";
+import { getVinylEntries, getTimelineEntries } from "@/lib/notion";
 
-type VinylFm = {
-  title: string;
-  artist: string;
-  year?: number;
-  label?: string;
-  cover?: string;
-  bought?: string;
-  rating?: number;
-};
+export const revalidate = 3600;
 
-type EntryFm = {
-  title: string;
-  date: string;
-  location?: string;
-  tags?: string[];
-};
 
 export function generateStaticParams() {
   return hobbies.map((h) => ({ hobby: h.slug }));
@@ -84,7 +70,7 @@ export default async function HobbyPage({
       {h.layout === "gallery" ? (
         <VinylGallery accent={h.accent} />
       ) : (
-        <Timeline collection={h.slug} accent={h.accent} />
+        <Timeline collection={h.slug as "kendo" | "ski" | "pilates"} accent={h.accent} />
       )}
 
       <SiteFooter />
@@ -93,10 +79,7 @@ export default async function HobbyPage({
 }
 
 async function VinylGallery({ accent }: { accent: string }) {
-  const records = await readCollection<VinylFm>("vinyl");
-  records.sort((a, b) =>
-    (b.frontmatter.bought ?? "") > (a.frontmatter.bought ?? "") ? 1 : -1
-  );
+  const records = await getVinylEntries();
 
   return (
     <section className="mx-auto w-full max-w-6xl px-6 pb-20">
@@ -155,13 +138,10 @@ async function Timeline({
   collection,
   accent
 }: {
-  collection: string;
+  collection: "kendo" | "ski" | "pilates";
   accent: string;
 }) {
-  const entries = await readCollection<EntryFm>(collection);
-  entries.sort((a, b) =>
-    (b.frontmatter.date ?? "") > (a.frontmatter.date ?? "") ? 1 : -1
-  );
+  const entries = await getTimelineEntries(collection);
 
   return (
     <section className="mx-auto w-full max-w-3xl px-6 pb-20">

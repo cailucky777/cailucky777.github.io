@@ -8,7 +8,7 @@ import { site } from "@/lib/site";
 import {
   education,
   experience,
-  focus,
+  now,
   projects,
   skills
 } from "@/data/pro";
@@ -77,16 +77,19 @@ export default function ProPage() {
       </section>
 
       <Section title="Now" eyebrow="02">
-        <ul className="grid grid-cols-1 gap-3 sm:grid-cols-2">
-          {focus.map((line) => (
+        <ol className="space-y-4">
+          {now.map((item) => (
             <li
-              key={line}
-              className="rounded-2xl border border-[color:var(--color-rule)] bg-[color:var(--color-cream)] p-5 text-sm leading-relaxed"
+              key={item.date}
+              className="grid grid-cols-1 gap-4 border-t border-[color:var(--color-rule)] pt-4 md:grid-cols-[200px_1fr]"
             >
-              {line}
+              <div className="font-mono text-xs uppercase tracking-[0.16em] text-[color:var(--color-ink-mute)]">
+                {item.date}
+              </div>
+              <p className="text-sm leading-relaxed">{item.text}</p>
             </li>
           ))}
-        </ul>
+        </ol>
       </Section>
 
       <Section title="Experience" eyebrow="03">

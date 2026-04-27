@@ -1,6 +1,11 @@
 // Single source of truth for the /pro page.
 // Edit dates / titles here; everything renders from this file.
 
+export type NowItem = {
+  date: string;
+  text: string;
+};
+
 export type Project = {
   slug: string;
   title: string;
@@ -27,11 +32,11 @@ export type EducationItem = {
   note?: string;
 };
 
-export const focus = [
-  "Agentic LLM workflows with tool use and structured retrieval",
-  "Production RAG: chunking, evals, and grounded answer pipelines",
-  "Computer vision for safety-critical signals (medical, wildfire)",
-  "End-to-end ML platform work: data → model → API → UI"
+export const now: NowItem[] = [
+  {
+    date: "Starting May 2026",
+    text: "Full-Stack AI Engineer Intern · BluePearl Mortgage Group Inc. · Vancouver, BC · Mitacs Accelerate"
+  }
 ];
 
 export const projects: Project[] = [
@@ -124,15 +129,11 @@ export const projects: Project[] = [
 
 export const experience: ExperienceItem[] = [
   {
-    role: "Mitacs Research Intern — AI Sales Intelligence",
-    org: "Blue Pearl Financial",
+    role: "Full-Stack AI Engineer Intern",
+    org: "BluePearl Mortgage Group Inc.",
     location: "Vancouver, BC",
-    period: "2026.05 — present (8 mo)",
-    bullets: [
-      "Building an LLM agent over Salesforce CRM signals to surface qualified leads and next-best actions.",
-      "Owning the eval harness: golden traces, retrieval precision, and downstream conversion uplift.",
-      "Funded by Mitacs Accelerate."
-    ]
+    period: "2026.05 — present",
+    bullets: []
   },
   {
     role: "Programming Consultant",
@@ -149,7 +150,7 @@ export const experience: ExperienceItem[] = [
     role: "MSc Applied Computing — Research Track",
     org: "British Columbia Institute of Technology",
     location: "Vancouver, BC",
-    period: "2024.09 — present",
+    period: "2025.09 — present",
     bullets: [
       "Research on serverless ML inference and explainable security models.",
       "Coursework spans applied ML systems, distributed computing, and HCI.",
@@ -162,7 +163,7 @@ export const education: EducationItem[] = [
   {
     degree: "MSc, Applied Computing",
     school: "British Columbia Institute of Technology",
-    period: "2024 — present"
+    period: "2025 — present"
   },
   {
     degree: "MS, Analytics",

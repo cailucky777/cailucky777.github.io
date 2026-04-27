@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
-import { ArrowUpRight, Mail } from "lucide-react";
+import { ArrowUpRight } from "lucide-react";
 import { SectionNav } from "@/components/SectionNav";
 import { SiteFooter } from "@/components/SiteFooter";
 import { site } from "@/lib/site";
@@ -55,12 +55,6 @@ export default function ProPage() {
               roles.
             </p>
             <div className="mt-6 flex flex-wrap gap-3 text-sm">
-              <a
-                href={`mailto:${site.email}`}
-                className="inline-flex items-center gap-2 rounded-full border border-[color:var(--color-ink)] bg-[color:var(--color-ink)] px-4 py-2 text-[color:var(--color-paper)] transition-opacity hover:opacity-90"
-              >
-                <Mail className="h-4 w-4" /> {site.email}
-              </a>
               <a
                 href={site.social.github}
                 target="_blank"

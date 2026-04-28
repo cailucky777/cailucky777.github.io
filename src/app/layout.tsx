@@ -1,5 +1,4 @@
 import type { Metadata } from "next";
-import Script from "next/script";
 import "./globals.css";
 import { site } from "@/lib/site";
 
@@ -35,13 +34,11 @@ export default function RootLayout({
           href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600;9..144,700&family=JetBrains+Mono:wght@400;500&display=swap"
           rel="stylesheet"
         />
+        <script src="https://cdn.weglot.com/weglot.min.js"></script>
+        <script dangerouslySetInnerHTML={{ __html: `Weglot.initialize({ api_key: 'wg_212e4d298a21c5b5803a67a9cf455e4c8' });` }} />
       </head>
       <body className="grain">
         {children}
-        <Script src="https://cdn.weglot.com/weglot.min.js" strategy="afterInteractive" />
-        <Script id="weglot-init" strategy="afterInteractive">{`
-          Weglot.initialize({ api_key: 'wg_212e4d298a21c5b5803a67a9cf455e4c8' });
-        `}</Script>
       </body>
     </html>
   );

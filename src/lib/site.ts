@@ -2,7 +2,7 @@ export const site = {
   name: "Savina (Luying) Cai",
   shortName: "Savina Cai",
   tagline: "Full-Stack AI Engineer · ML Researcher · CS Educator",
-  email: "savinacai@gmail.com",
+  email: "lcai25@my.bcit.ca",
   social: {
     github: "https://github.com/cailucky777",
     linkedin: "https://www.linkedin.com/in/savina-cai/",

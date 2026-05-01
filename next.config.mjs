@@ -6,7 +6,8 @@ const nextConfig = {
       { protocol: "https", hostname: "i.scdn.co" },
       { protocol: "https", hostname: "cdn.shopify.com" },
       { protocol: "https", hostname: "i.discogs.com" },
-      { protocol: "https", hostname: "img.discogs.com" }
+      { protocol: "https", hostname: "img.discogs.com" },
+      { protocol: "https", hostname: "www.discogs.com" }
     ]
   }
 };

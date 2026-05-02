@@ -36,7 +36,7 @@ export type EducationItem = {
 export const now: NowItem[] = [
   {
     date: "Starting May 2026",
-    text: "Full-Stack AI Engineer Intern · BluePearl Mortgage Group Inc. · Vancouver, BC · Mitacs Accelerate"
+    text: "Full-Stack AI Engineer Intern · BluePearl Mortgage Group Inc. · Vancouver, BC"
   },
   {
     date: "April 2026",

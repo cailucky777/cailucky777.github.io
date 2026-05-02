@@ -86,7 +86,18 @@ export default function ProPage() {
               <div className="font-mono text-xs uppercase tracking-[0.16em] text-[color:var(--color-ink-mute)]">
                 {item.date}
               </div>
-              <p className="text-sm leading-relaxed">{item.text}</p>
+              {item.link ? (
+                <a
+                  href={item.link}
+                  target="_blank"
+                  rel="noreferrer"
+                  className="text-sm leading-relaxed underline-offset-4 hover:underline"
+                >
+                  {item.text}
+                </a>
+              ) : (
+                <p className="text-sm leading-relaxed">{item.text}</p>
+              )}
             </li>
           ))}
         </ol>

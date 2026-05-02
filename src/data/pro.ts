@@ -4,6 +4,7 @@
 export type NowItem = {
   date: string;
   text: string;
+  link?: string;
 };
 
 export type Project = {
@@ -36,6 +37,11 @@ export const now: NowItem[] = [
   {
     date: "Starting May 2026",
     text: "Full-Stack AI Engineer Intern · BluePearl Mortgage Group Inc. · Vancouver, BC · Mitacs Accelerate"
+  },
+  {
+    date: "April 2026",
+    text: "Featured in BCIT News — our COMP 9130 final project predicts Vancouver road-repair risk before conditions worsen, combining 23 open datasets with a fold-stacked ensemble of four models. Built with Ledja Halltari & Alex Liu.",
+    link: "https://www.bcit.ca/news/stories/computing-msc-students-train-ai/"
   }
 ];
 

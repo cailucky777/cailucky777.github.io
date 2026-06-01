@@ -1,0 +1,1219 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Building a Homework Tracker — SwiftUI Tutorial</title>
+<style>
+  :root {
+    --bg: #f5f5f7;
+    --paper: #ffffff;
+    --ink: #1d1d1f;
+    --ink-soft: #515154;
+    --ink-mute: #86868b;
+    --rule: #d2d2d7;
+    --accent: #0071e3;
+    --accent-soft: #e8f2ff;
+    --highlight: #fff3a8;
+    --code-bg: #1e1e2e;
+    --code-ink: #e6e6eb;
+    --code-mute: #6c7086;
+    --kw: #f38ba8;
+    --type: #74c7ec;
+    --str: #a6e3a1;
+    --num: #fab387;
+    --prop: #f9e2af;
+    --com: #6c7086;
+    --added: rgba(255, 235, 130, 0.18);
+    --added-bar: #f5c518;
+  }
+
+  * { box-sizing: border-box; }
+  html, body { margin: 0; padding: 0; }
+  body {
+    background: var(--bg);
+    color: var(--ink);
+    font-family: -apple-system, BlinkMacSystemFont, "SF Pro Display", "SF Pro Text", "Segoe UI", system-ui, sans-serif;
+    line-height: 1.55;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  .wrap { max-width: 980px; margin: 0 auto; padding: 0 24px; }
+
+  /* Header */
+  header.hero {
+    background: linear-gradient(180deg, #fdfdfd 0%, #f5f5f7 100%);
+    border-bottom: 1px solid var(--rule);
+    padding: 72px 0 56px;
+  }
+  .eyebrow {
+    color: var(--accent);
+    font-size: 14px;
+    font-weight: 600;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    margin-bottom: 14px;
+  }
+  h1.title {
+    font-size: 52px;
+    line-height: 1.08;
+    letter-spacing: -0.02em;
+    font-weight: 700;
+    margin: 0 0 18px;
+  }
+  .lede {
+    font-size: 21px;
+    color: var(--ink-soft);
+    max-width: 720px;
+    margin: 0 0 28px;
+  }
+  .meta {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 28px;
+    color: var(--ink-mute);
+    font-size: 14px;
+    border-top: 1px solid var(--rule);
+    padding-top: 20px;
+  }
+  .meta strong { color: var(--ink); font-weight: 600; }
+
+  /* Section */
+  section.chapter {
+    background: var(--paper);
+    border-bottom: 1px solid var(--rule);
+    padding: 64px 0;
+  }
+  section.chapter:nth-of-type(even) { background: #fafafc; }
+
+  .chapter-head {
+    display: flex;
+    align-items: baseline;
+    gap: 18px;
+    margin-bottom: 14px;
+  }
+  .chapter-num {
+    color: var(--accent);
+    font-weight: 700;
+    font-size: 14px;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+  }
+  h2.chapter-title {
+    font-size: 36px;
+    letter-spacing: -0.015em;
+    font-weight: 700;
+    margin: 0 0 12px;
+    line-height: 1.15;
+  }
+  .chapter-intro {
+    font-size: 18px;
+    color: var(--ink-soft);
+    max-width: 760px;
+    margin: 0 0 36px;
+  }
+  .time-pill {
+    display: inline-block;
+    background: var(--accent-soft);
+    color: var(--accent);
+    font-size: 12px;
+    font-weight: 600;
+    padding: 4px 10px;
+    border-radius: 999px;
+    margin-bottom: 22px;
+  }
+
+  /* Steps */
+  .step {
+    display: grid;
+    grid-template-columns: 56px 1fr;
+    gap: 20px;
+    margin-bottom: 40px;
+  }
+  .step-num {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background: var(--ink);
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 600;
+    font-size: 17px;
+  }
+  .step-body h3 {
+    font-size: 20px;
+    margin: 6px 0 10px;
+    font-weight: 600;
+    letter-spacing: -0.01em;
+  }
+  .step-body p {
+    margin: 0 0 14px;
+    color: var(--ink-soft);
+    font-size: 16px;
+  }
+  .step-body p code, li code {
+    background: #eef0f3;
+    color: #b04a64;
+    padding: 1px 6px;
+    border-radius: 4px;
+    font-family: "SF Mono", Menlo, Consolas, monospace;
+    font-size: 14px;
+  }
+  .step-body ul, .step-body ol {
+    color: var(--ink-soft);
+    padding-left: 22px;
+    margin: 0 0 14px;
+  }
+  .step-body li { margin-bottom: 6px; }
+
+  /* Code */
+  .code {
+    background: var(--code-bg);
+    color: var(--code-ink);
+    border-radius: 12px;
+    padding: 18px 20px;
+    font-family: "SF Mono", Menlo, Consolas, "Courier New", monospace;
+    font-size: 14px;
+    line-height: 1.7;
+    overflow-x: auto;
+    margin: 0 0 16px;
+    box-shadow: 0 1px 0 rgba(0,0,0,0.04), 0 8px 24px rgba(0,0,0,0.06);
+  }
+  .code .filename {
+    display: block;
+    color: var(--code-mute);
+    font-size: 12px;
+    margin-bottom: 12px;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+  }
+  .code pre {
+    margin: 0;
+    white-space: pre;
+  }
+  .code .line {
+    display: block;
+    padding: 0 6px;
+    border-left: 3px solid transparent;
+  }
+  .code .added {
+    background: var(--added);
+    border-left-color: var(--added-bar);
+  }
+  .kw { color: var(--kw); }
+  .type { color: var(--type); }
+  .str { color: var(--str); }
+  .num { color: var(--num); }
+  .prop { color: var(--prop); }
+  .com { color: var(--com); font-style: italic; }
+  .attr { color: var(--prop); }
+
+  /* Callouts */
+  .callout {
+    border-left: 4px solid var(--accent);
+    background: var(--accent-soft);
+    padding: 16px 18px;
+    border-radius: 0 10px 10px 0;
+    margin: 16px 0 20px;
+    font-size: 15px;
+    color: #003c80;
+  }
+  .callout strong { color: var(--accent); }
+  .callout.tip { border-left-color: #34c759; background: #e7f7ec; color: #115c2b; }
+  .callout.tip strong { color: #1a7a3a; }
+  .callout.warn { border-left-color: #ff9500; background: #fff3e0; color: #7a4700; }
+  .callout.warn strong { color: #b46500; }
+
+  /* Preview card */
+  .preview {
+    background: linear-gradient(180deg, #ffffff 0%, #f0f2f6 100%);
+    border: 1px solid var(--rule);
+    border-radius: 14px;
+    padding: 22px;
+    margin: 16px 0 20px;
+  }
+  .preview-title {
+    font-size: 12px;
+    color: var(--ink-mute);
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    margin-bottom: 14px;
+  }
+  .phone {
+    max-width: 320px;
+    margin: 0 auto;
+    background: white;
+    border-radius: 22px;
+    border: 1px solid var(--rule);
+    box-shadow: 0 8px 24px rgba(0,0,0,0.08);
+    overflow: hidden;
+    font-size: 14px;
+  }
+  .phone-bar {
+    background: #f9f9fb;
+    padding: 12px 16px;
+    border-bottom: 1px solid var(--rule);
+    font-weight: 700;
+    font-size: 22px;
+  }
+  .row {
+    padding: 12px 16px;
+    border-bottom: 1px solid #f0f0f3;
+    display: flex;
+    gap: 12px;
+    align-items: center;
+  }
+  .row:last-child { border-bottom: 0; }
+  .check {
+    width: 22px;
+    height: 22px;
+    border-radius: 50%;
+    border: 1.5px solid #c7c7cc;
+    flex-shrink: 0;
+  }
+  .check.done {
+    background: #34c759;
+    border-color: #34c759;
+    position: relative;
+  }
+  .check.done::after {
+    content: "";
+    position: absolute;
+    left: 6px;
+    top: 2px;
+    width: 6px;
+    height: 12px;
+    border: solid white;
+    border-width: 0 2px 2px 0;
+    transform: rotate(45deg);
+  }
+  .row-text { flex: 1; min-width: 0; }
+  .row-subject { font-size: 11px; color: var(--ink-mute); text-transform: uppercase; letter-spacing: 0.04em; }
+  .row-title { font-weight: 600; font-size: 15px; }
+  .row-title.done { text-decoration: line-through; color: var(--ink-mute); }
+  .row-date { font-size: 12px; color: var(--ink-mute); margin-top: 2px; }
+  .badge {
+    font-size: 10px;
+    font-weight: 700;
+    padding: 3px 8px;
+    border-radius: 999px;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+  }
+  .badge.high { background: #ffe5e5; color: #c62828; }
+  .badge.med  { background: #fff0d6; color: #b46500; }
+  .badge.low  { background: #e3f5e6; color: #2e7d32; }
+
+  /* TOC */
+  nav.toc {
+    background: var(--paper);
+    border-bottom: 1px solid var(--rule);
+    padding: 28px 0;
+  }
+  nav.toc h2 {
+    font-size: 13px;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--ink-mute);
+    margin: 0 0 14px;
+    font-weight: 600;
+  }
+  nav.toc ol {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 10px;
+  }
+  nav.toc li {
+    counter-increment: tocstep;
+  }
+  nav.toc a {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    padding: 12px 14px;
+    text-decoration: none;
+    color: var(--ink);
+    border: 1px solid var(--rule);
+    border-radius: 10px;
+    background: white;
+    transition: border-color 0.15s, transform 0.15s;
+  }
+  nav.toc a:hover { border-color: var(--accent); transform: translateY(-1px); }
+  nav.toc a::before {
+    content: counter(tocstep);
+    background: var(--ink);
+    color: white;
+    width: 26px;
+    height: 26px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 13px;
+    font-weight: 600;
+    flex-shrink: 0;
+  }
+  nav.toc ol { counter-reset: tocstep; }
+
+  /* Check yourself */
+  .check-yourself {
+    background: #fff8e1;
+    border: 1px solid #f5c518;
+    border-radius: 12px;
+    padding: 22px 24px;
+    margin: 24px 0;
+  }
+  .check-yourself h4 {
+    margin: 0 0 12px;
+    font-size: 16px;
+    color: #6d4c00;
+  }
+  .check-yourself details {
+    border-top: 1px solid #f5c518;
+    padding-top: 12px;
+    margin-top: 12px;
+  }
+  .check-yourself summary {
+    cursor: pointer;
+    font-weight: 600;
+    color: #6d4c00;
+  }
+  .check-yourself summary::-webkit-details-marker { display: none; }
+  .check-yourself summary::before {
+    content: "▸ ";
+    display: inline-block;
+    transition: transform 0.15s;
+  }
+  .check-yourself details[open] summary::before {
+    transform: rotate(90deg);
+  }
+  .check-yourself .answer {
+    padding-top: 8px;
+    color: #5a3f00;
+  }
+
+  /* Footer */
+  footer {
+    background: #1d1d1f;
+    color: #a1a1a6;
+    padding: 48px 0;
+    text-align: center;
+    font-size: 14px;
+  }
+  footer strong { color: white; }
+
+  @media (max-width: 640px) {
+    h1.title { font-size: 36px; }
+    h2.chapter-title { font-size: 26px; }
+    .step { grid-template-columns: 40px 1fr; gap: 14px; }
+    .step-num { width: 32px; height: 32px; font-size: 15px; }
+    header.hero, section.chapter { padding: 44px 0; }
+  }
+</style>
+</head>
+<body>
+
+<header class="hero">
+  <div class="wrap">
+    <div class="eyebrow">SwiftUI · Beginner Tutorial</div>
+    <h1 class="title">Building a Homework Tracker</h1>
+    <p class="lede">
+      Build a complete iPhone app that helps students keep track of their assignments.
+      Along the way, you'll learn how to model data with structs, display dynamic
+      content with lists, and respond to user input with state.
+    </p>
+    <div class="meta">
+      <div><strong>Estimated time</strong><br/>60 minutes</div>
+      <div><strong>Difficulty</strong><br/>Beginner</div>
+      <div><strong>You'll need</strong><br/>Xcode 15 or later</div>
+      <div><strong>Language</strong><br/>Swift &amp; SwiftUI</div>
+    </div>
+  </div>
+</header>
+
+<nav class="toc">
+  <div class="wrap">
+    <h2>What you'll build, step by step</h2>
+    <ol>
+      <li><a href="#section-1">Create the Xcode project</a></li>
+      <li><a href="#section-2">Model homework with a custom type</a></li>
+      <li><a href="#section-3">Add sample data</a></li>
+      <li><a href="#section-4">Display a list of homework</a></li>
+      <li><a href="#section-5">Build a custom row view</a></li>
+      <li><a href="#section-6">Manage data with @State</a></li>
+      <li><a href="#section-7">Toggle completion with @Binding</a></li>
+      <li><a href="#section-8">Check your understanding</a></li>
+    </ol>
+  </div>
+</nav>
+
+<!-- SECTION 1 -->
+<section class="chapter" id="section-1">
+  <div class="wrap">
+    <div class="chapter-head">
+      <div class="chapter-num">Section 1</div>
+    </div>
+    <h2 class="chapter-title">Create the Xcode project</h2>
+    <p class="chapter-intro">
+      Every SwiftUI app starts with a brand-new Xcode project. You'll create one
+      now and take a quick tour of the starter code before writing anything of
+      your own.
+    </p>
+    <span class="time-pill">⏱ About 5 minutes</span>
+
+    <div class="step">
+      <div class="step-num">1</div>
+      <div class="step-body">
+        <h3>Open Xcode and start a new project.</h3>
+        <p>Launch Xcode, choose <strong>File &rsaquo; New &rsaquo; Project…</strong>,
+           and pick the <strong>iOS</strong> tab. Select the <strong>App</strong>
+           template, then click <strong>Next</strong>.</p>
+      </div>
+    </div>
+
+    <div class="step">
+      <div class="step-num">2</div>
+      <div class="step-body">
+        <h3>Configure the project options.</h3>
+        <p>Fill out the form with these values:</p>
+        <ul>
+          <li><strong>Product Name:</strong> <code>HomeworkTracker</code></li>
+          <li><strong>Interface:</strong> SwiftUI</li>
+          <li><strong>Language:</strong> Swift</li>
+          <li><strong>Storage:</strong> None</li>
+        </ul>
+        <p>Click <strong>Next</strong>, choose a folder to save the project, and
+           click <strong>Create</strong>.</p>
+      </div>
+    </div>
+
+    <div class="step">
+      <div class="step-num">3</div>
+      <div class="step-body">
+        <h3>Look at the starter file.</h3>
+        <p>In the Project navigator, open <code>ContentView.swift</code>. This is
+           where the screen of your app lives. The template shows a globe icon
+           and the words "Hello, world!". Click the <strong>Resume</strong>
+           button at the top of the preview area to see it running.</p>
+        <div class="code"><span class="filename">ContentView.swift · starter</span><pre><span class="line"><span class="kw">import</span> SwiftUI</span>
+<span class="line"></span>
+<span class="line"><span class="kw">struct</span> <span class="type">ContentView</span>: <span class="type">View</span> {</span>
+<span class="line">    <span class="kw">var</span> body: <span class="kw">some</span> <span class="type">View</span> {</span>
+<span class="line">        <span class="type">VStack</span> {</span>
+<span class="line">            <span class="type">Image</span>(systemName: <span class="str">"globe"</span>)</span>
+<span class="line">                .imageScale(.large)</span>
+<span class="line">                .foregroundStyle(.tint)</span>
+<span class="line">            <span class="type">Text</span>(<span class="str">"Hello, world!"</span>)</span>
+<span class="line">        }</span>
+<span class="line">        .padding()</span>
+<span class="line">    }</span>
+<span class="line">}</span></pre></div>
+
+        <div class="callout tip">
+          <strong>Tip:</strong> If the preview doesn't appear, choose
+          <strong>Editor &rsaquo; Canvas</strong> (or press
+          <code>⌥⌘↩</code>) to show it.
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SECTION 2 -->
+<section class="chapter" id="section-2">
+  <div class="wrap">
+    <div class="chapter-head"><div class="chapter-num">Section 2</div></div>
+    <h2 class="chapter-title">Model homework with a custom type</h2>
+    <p class="chapter-intro">
+      Before you can show homework on the screen, you need to decide what a piece
+      of homework <em>is</em>. You'll capture that idea in code by writing a
+      Swift <code>struct</code>—a custom type that bundles related values
+      together.
+    </p>
+    <span class="time-pill">⏱ About 10 minutes</span>
+
+    <div class="step">
+      <div class="step-num">1</div>
+      <div class="step-body">
+        <h3>Add a new Swift file to the project.</h3>
+        <p>In the Project navigator, right-click the
+          <strong>HomeworkTracker</strong> folder and choose
+          <strong>New File…</strong>. Select <strong>Swift File</strong>, name
+          it <code>Homework.swift</code>, and click <strong>Create</strong>.</p>
+      </div>
+    </div>
+
+    <div class="step">
+      <div class="step-num">2</div>
+      <div class="step-body">
+        <h3>Define the <code>Homework</code> struct.</h3>
+        <p>Replace the contents of the file with a struct that holds the
+           information you'd want for any assignment: the class subject, what
+           needs to be done, when it's due, and whether it's finished.</p>
+
+        <div class="code"><span class="filename">Homework.swift</span><pre><span class="line"><span class="kw">import</span> Foundation</span>
+<span class="line"></span>
+<span class="line"><span class="kw">struct</span> <span class="type">Homework</span> {</span>
+<span class="line">    <span class="kw">var</span> subject: <span class="type">String</span></span>
+<span class="line">    <span class="kw">var</span> title: <span class="type">String</span></span>
+<span class="line">    <span class="kw">var</span> dueDate: <span class="type">Date</span></span>
+<span class="line">    <span class="kw">var</span> isCompleted: <span class="type">Bool</span> = <span class="kw">false</span></span>
+<span class="line">}</span></pre></div>
+
+        <p>Each line inside the braces declares a <strong>property</strong>—a
+           piece of data the struct stores. Notice that
+           <code>isCompleted</code> has a default value of <code>false</code>,
+           so new homework starts out unfinished.</p>
+      </div>
+    </div>
+
+    <div class="step">
+      <div class="step-num">3</div>
+      <div class="step-body">
+        <h3>Add a priority level using an enum.</h3>
+        <p>Not all homework is equally urgent. Add a <code>Priority</code>
+           enum above the struct so you can mark each task as high, medium, or
+           low priority.</p>
+
+        <div class="code"><span class="filename">Homework.swift</span><pre><span class="line"><span class="kw">import</span> Foundation</span>
+<span class="line"></span>
+<span class="line added"><span class="kw">enum</span> <span class="type">Priority</span>: <span class="type">String</span>, <span class="type">CaseIterable</span> {</span>
+<span class="line added">    <span class="kw">case</span> high = <span class="str">"High"</span></span>
+<span class="line added">    <span class="kw">case</span> medium = <span class="str">"Medium"</span></span>
+<span class="line added">    <span class="kw">case</span> low = <span class="str">"Low"</span></span>
+<span class="line added">}</span>
+<span class="line"></span>
+<span class="line"><span class="kw">struct</span> <span class="type">Homework</span> {</span>
+<span class="line">    <span class="kw">var</span> subject: <span class="type">String</span></span>
+<span class="line">    <span class="kw">var</span> title: <span class="type">String</span></span>
+<span class="line">    <span class="kw">var</span> dueDate: <span class="type">Date</span></span>
+<span class="line">    <span class="kw">var</span> isCompleted: <span class="type">Bool</span> = <span class="kw">false</span></span>
+<span class="line added">    <span class="kw">var</span> priority: <span class="type">Priority</span> = .medium</span>
+<span class="line">}</span></pre></div>
+
+        <p>The highlighted lines are what you're adding. <code>CaseIterable</code>
+           lets you ask Swift for every priority case later
+           (handy for menus and pickers).</p>
+      </div>
+    </div>
+
+    <div class="step">
+      <div class="step-num">4</div>
+      <div class="step-body">
+        <h3>Make <code>Homework</code> conform to <code>Identifiable</code>.</h3>
+        <p>SwiftUI's <code>List</code> needs a way to tell items apart. The
+           easiest way is to make your type conform to the
+           <code>Identifiable</code> protocol, which requires a unique
+           <code>id</code> property.</p>
+
+        <div class="code"><span class="filename">Homework.swift</span><pre><span class="line"><span class="kw">struct</span> <span class="type">Homework</span><span class="added">: <span class="type">Identifiable</span></span> {</span>
+<span class="line added">    <span class="kw">let</span> id = <span class="type">UUID</span>()</span>
+<span class="line">    <span class="kw">var</span> subject: <span class="type">String</span></span>
+<span class="line">    <span class="kw">var</span> title: <span class="type">String</span></span>
+<span class="line">    <span class="kw">var</span> dueDate: <span class="type">Date</span></span>
+<span class="line">    <span class="kw">var</span> isCompleted: <span class="type">Bool</span> = <span class="kw">false</span></span>
+<span class="line">    <span class="kw">var</span> priority: <span class="type">Priority</span> = .medium</span>
+<span class="line">}</span></pre></div>
+
+        <p><code>UUID()</code> generates a brand-new universally unique
+           identifier every time a <code>Homework</code> is created, so no two
+           assignments ever share an id.</p>
+
+        <div class="callout">
+          <strong>Why this matters:</strong> When SwiftUI redraws your list,
+          it uses <code>id</code> to figure out which rows are new, which moved,
+          and which went away. Without it, animations and updates wouldn't
+          work correctly.
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SECTION 3 -->
+<section class="chapter" id="section-3">
+  <div class="wrap">
+    <div class="chapter-head"><div class="chapter-num">Section 3</div></div>
+    <h2 class="chapter-title">Add sample data</h2>
+    <p class="chapter-intro">
+      To see the app come alive, you need something to display. You'll add a
+      collection of example assignments to <code>Homework</code> itself so any
+      view can grab them while you're designing.
+    </p>
+    <span class="time-pill">⏱ About 5 minutes</span>
+
+    <div class="step">
+      <div class="step-num">1</div>
+      <div class="step-body">
+        <h3>Add a static <code>sampleData</code> array.</h3>
+        <p>Below the closing brace of <code>Homework</code>, add an extension
+           that holds a few realistic assignments. Using
+           <code>.addingTimeInterval(86_400)</code> shifts a date by one
+           day (there are 86,400 seconds in a day).</p>
+
+        <div class="code"><span class="filename">Homework.swift</span><pre><span class="line"><span class="kw">extension</span> <span class="type">Homework</span> {</span>
+<span class="line">    <span class="kw">static let</span> sampleData: [<span class="type">Homework</span>] = [</span>
+<span class="line">        <span class="type">Homework</span>(</span>
+<span class="line">            subject: <span class="str">"Math"</span>,</span>
+<span class="line">            title: <span class="str">"Chapter 5 problems 1–20"</span>,</span>
+<span class="line">            dueDate: .now.addingTimeInterval(<span class="num">86_400</span>),</span>
+<span class="line">            priority: .high</span>
+<span class="line">        ),</span>
+<span class="line">        <span class="type">Homework</span>(</span>
+<span class="line">            subject: <span class="str">"English"</span>,</span>
+<span class="line">            title: <span class="str">"Draft of persuasive essay"</span>,</span>
+<span class="line">            dueDate: .now.addingTimeInterval(<span class="num">86_400</span> * <span class="num">2</span>)</span>
+<span class="line">        ),</span>
+<span class="line">        <span class="type">Homework</span>(</span>
+<span class="line">            subject: <span class="str">"Science"</span>,</span>
+<span class="line">            title: <span class="str">"Lab report on photosynthesis"</span>,</span>
+<span class="line">            dueDate: .now.addingTimeInterval(<span class="num">86_400</span> * <span class="num">3</span>),</span>
+<span class="line">            priority: .low</span>
+<span class="line">        ),</span>
+<span class="line">        <span class="type">Homework</span>(</span>
+<span class="line">            subject: <span class="str">"History"</span>,</span>
+<span class="line">            title: <span class="str">"Read chapters 7 and 8"</span>,</span>
+<span class="line">            dueDate: .now.addingTimeInterval(<span class="num">86_400</span> * <span class="num">5</span>),</span>
+<span class="line">            isCompleted: <span class="kw">true</span></span>
+<span class="line">        )</span>
+<span class="line">    ]</span>
+<span class="line">}</span></pre></div>
+
+        <div class="callout tip">
+          <strong>Tip:</strong> Sample data lives <em>in</em> the model so any
+          view—or future Xcode preview—can use it. You'll appreciate this when
+          you start adding more screens.
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SECTION 4 -->
+<section class="chapter" id="section-4">
+  <div class="wrap">
+    <div class="chapter-head"><div class="chapter-num">Section 4</div></div>
+    <h2 class="chapter-title">Display a list of homework</h2>
+    <p class="chapter-intro">
+      Now that the data exists, it's time to show it. SwiftUI's
+      <code>List</code> and <code>ForEach</code> turn a collection of values
+      into rows on the screen with almost no boilerplate.
+    </p>
+    <span class="time-pill">⏱ About 8 minutes</span>
+
+    <div class="step">
+      <div class="step-num">1</div>
+      <div class="step-body">
+        <h3>Open <code>ContentView.swift</code>.</h3>
+        <p>Replace the body of <code>ContentView</code> with a navigation stack
+           that wraps a <code>List</code>.</p>
+
+        <div class="code"><span class="filename">ContentView.swift</span><pre><span class="line"><span class="kw">import</span> SwiftUI</span>
+<span class="line"></span>
+<span class="line"><span class="kw">struct</span> <span class="type">ContentView</span>: <span class="type">View</span> {</span>
+<span class="line">    <span class="kw">var</span> body: <span class="kw">some</span> <span class="type">View</span> {</span>
+<span class="line">        <span class="type">NavigationStack</span> {</span>
+<span class="line">            <span class="type">List</span> {</span>
+<span class="line">                <span class="type">ForEach</span>(<span class="type">Homework</span>.sampleData) { homework <span class="kw">in</span></span>
+<span class="line">                    <span class="type">Text</span>(homework.title)</span>
+<span class="line">                }</span>
+<span class="line">            }</span>
+<span class="line">            .navigationTitle(<span class="str">"Homework"</span>)</span>
+<span class="line">        }</span>
+<span class="line">    }</span>
+<span class="line">}</span></pre></div>
+
+        <p>The <code>ForEach</code> walks through every entry in
+          <code>sampleData</code>. Because <code>Homework</code> is
+          <code>Identifiable</code>, SwiftUI knows how to tell the rows apart
+          automatically—no <code>id:</code> parameter required.</p>
+      </div>
+    </div>
+
+    <div class="step">
+      <div class="step-num">2</div>
+      <div class="step-body">
+        <h3>Preview it.</h3>
+        <p>Click <strong>Resume</strong> in the canvas. You should see a
+          scrolling list with four rows and a large <strong>Homework</strong>
+          title at the top.</p>
+
+        <div class="preview">
+          <div class="preview-title">Live Preview</div>
+          <div class="phone">
+            <div class="phone-bar">Homework</div>
+            <div class="row"><div class="row-text"><div class="row-title">Chapter 5 problems 1–20</div></div></div>
+            <div class="row"><div class="row-text"><div class="row-title">Draft of persuasive essay</div></div></div>
+            <div class="row"><div class="row-text"><div class="row-title">Lab report on photosynthesis</div></div></div>
+            <div class="row"><div class="row-text"><div class="row-title">Read chapters 7 and 8</div></div></div>
+          </div>
+        </div>
+
+        <div class="callout warn">
+          <strong>Stop here and check:</strong> Do all four titles appear? If
+          not, make sure <code>Homework.swift</code> is part of the project
+          (it should appear in the Project navigator alongside
+          <code>ContentView.swift</code>).
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SECTION 5 -->
+<section class="chapter" id="section-5">
+  <div class="wrap">
+    <div class="chapter-head"><div class="chapter-num">Section 5</div></div>
+    <h2 class="chapter-title">Build a custom row view</h2>
+    <p class="chapter-intro">
+      A single line of text doesn't tell students much. You'll extract the row
+      into its own view so it can show the subject, title, due date, and a
+      colored priority badge.
+    </p>
+    <span class="time-pill">⏱ About 12 minutes</span>
+
+    <div class="step">
+      <div class="step-num">1</div>
+      <div class="step-body">
+        <h3>Create <code>HomeworkRow.swift</code>.</h3>
+        <p>Add another Swift file the same way as before, name it
+           <code>HomeworkRow.swift</code>, and replace the contents with this
+           starting view.</p>
+
+        <div class="code"><span class="filename">HomeworkRow.swift</span><pre><span class="line"><span class="kw">import</span> SwiftUI</span>
+<span class="line"></span>
+<span class="line"><span class="kw">struct</span> <span class="type">HomeworkRow</span>: <span class="type">View</span> {</span>
+<span class="line">    <span class="kw">let</span> homework: <span class="type">Homework</span></span>
+<span class="line"></span>
+<span class="line">    <span class="kw">var</span> body: <span class="kw">some</span> <span class="type">View</span> {</span>
+<span class="line">        <span class="type">HStack</span> {</span>
+<span class="line">            <span class="type">VStack</span>(alignment: .leading, spacing: <span class="num">4</span>) {</span>
+<span class="line">                <span class="type">Text</span>(homework.subject)</span>
+<span class="line">                    .font(.caption)</span>
+<span class="line">                    .foregroundStyle(.secondary)</span>
+<span class="line">                <span class="type">Text</span>(homework.title)</span>
+<span class="line">                    .font(.headline)</span>
+<span class="line">                <span class="type">Text</span>(homework.dueDate, style: .date)</span>
+<span class="line">                    .font(.caption)</span>
+<span class="line">                    .foregroundStyle(.secondary)</span>
+<span class="line">            }</span>
+<span class="line">            <span class="type">Spacer</span>()</span>
+<span class="line">        }</span>
+<span class="line">        .padding(.vertical, <span class="num">4</span>)</span>
+<span class="line">    }</span>
+<span class="line">}</span></pre></div>
+
+        <p>The row receives one piece of homework as a constant
+           (<code>let</code>) and arranges its fields in a vertical stack.</p>
+      </div>
+    </div>
+
+    <div class="step">
+      <div class="step-num">2</div>
+      <div class="step-body">
+        <h3>Add a priority badge.</h3>
+        <p>Add two computed properties below <code>body</code> that build a
+           colored capsule based on the homework's priority, then place the
+           badge inside the <code>HStack</code>.</p>
+
+        <div class="code"><span class="filename">HomeworkRow.swift</span><pre><span class="line">        <span class="type">HStack</span> {</span>
+<span class="line">            <span class="type">VStack</span>(alignment: .leading, spacing: <span class="num">4</span>) { <span class="com">/* …unchanged… */</span> }</span>
+<span class="line">            <span class="type">Spacer</span>()</span>
+<span class="line added">            priorityBadge</span>
+<span class="line">        }</span>
+<span class="line">        .padding(.vertical, <span class="num">4</span>)</span>
+<span class="line">    }</span>
+<span class="line"></span>
+<span class="line added">    <span class="kw">private var</span> priorityBadge: <span class="kw">some</span> <span class="type">View</span> {</span>
+<span class="line added">        <span class="type">Text</span>(homework.priority.rawValue)</span>
+<span class="line added">            .font(.caption2.bold())</span>
+<span class="line added">            .padding(.horizontal, <span class="num">8</span>)</span>
+<span class="line added">            .padding(.vertical, <span class="num">4</span>)</span>
+<span class="line added">            .background(priorityColor.opacity(<span class="num">0.18</span>))</span>
+<span class="line added">            .foregroundStyle(priorityColor)</span>
+<span class="line added">            .clipShape(<span class="type">Capsule</span>())</span>
+<span class="line added">    }</span>
+<span class="line"></span>
+<span class="line added">    <span class="kw">private var</span> priorityColor: <span class="type">Color</span> {</span>
+<span class="line added">        <span class="kw">switch</span> homework.priority {</span>
+<span class="line added">        <span class="kw">case</span> .high: <span class="kw">return</span> .red</span>
+<span class="line added">        <span class="kw">case</span> .medium: <span class="kw">return</span> .orange</span>
+<span class="line added">        <span class="kw">case</span> .low: <span class="kw">return</span> .green</span>
+<span class="line added">        }</span>
+<span class="line added">    }</span>
+<span class="line">}</span></pre></div>
+      </div>
+    </div>
+
+    <div class="step">
+      <div class="step-num">3</div>
+      <div class="step-body">
+        <h3>Use <code>HomeworkRow</code> in <code>ContentView</code>.</h3>
+        <p>Switch back to <code>ContentView.swift</code> and replace the
+           <code>Text</code> inside <code>ForEach</code> with your new row.</p>
+
+        <div class="code"><span class="filename">ContentView.swift</span><pre><span class="line">            <span class="type">List</span> {</span>
+<span class="line">                <span class="type">ForEach</span>(<span class="type">Homework</span>.sampleData) { homework <span class="kw">in</span></span>
+<span class="line"><span class="com">                    // Before:</span></span>
+<span class="line"><span class="com">                    // Text(homework.title)</span></span>
+<span class="line added">                    <span class="type">HomeworkRow</span>(homework: homework)</span>
+<span class="line">                }</span>
+<span class="line">            }</span></pre></div>
+
+        <div class="preview">
+          <div class="preview-title">Live Preview</div>
+          <div class="phone">
+            <div class="phone-bar">Homework</div>
+            <div class="row">
+              <div class="row-text">
+                <div class="row-subject">Math</div>
+                <div class="row-title">Chapter 5 problems 1–20</div>
+                <div class="row-date">Due tomorrow</div>
+              </div>
+              <div class="badge high">High</div>
+            </div>
+            <div class="row">
+              <div class="row-text">
+                <div class="row-subject">English</div>
+                <div class="row-title">Draft of persuasive essay</div>
+                <div class="row-date">Due in 2 days</div>
+              </div>
+              <div class="badge med">Medium</div>
+            </div>
+            <div class="row">
+              <div class="row-text">
+                <div class="row-subject">Science</div>
+                <div class="row-title">Lab report on photosynthesis</div>
+                <div class="row-date">Due in 3 days</div>
+              </div>
+              <div class="badge low">Low</div>
+            </div>
+            <div class="row">
+              <div class="row-text">
+                <div class="row-subject">History</div>
+                <div class="row-title">Read chapters 7 and 8</div>
+                <div class="row-date">Due in 5 days</div>
+              </div>
+              <div class="badge med">Medium</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SECTION 6 -->
+<section class="chapter" id="section-6">
+  <div class="wrap">
+    <div class="chapter-head"><div class="chapter-num">Section 6</div></div>
+    <h2 class="chapter-title">Manage data with @State</h2>
+    <p class="chapter-intro">
+      Right now the homework list is a constant—nothing can change. By turning
+      it into <code>@State</code>, you let the view <em>own</em> the data and
+      automatically redraw whenever it changes.
+    </p>
+    <span class="time-pill">⏱ About 8 minutes</span>
+
+    <div class="step">
+      <div class="step-num">1</div>
+      <div class="step-body">
+        <h3>Store the list as state.</h3>
+        <p>In <code>ContentView</code>, add a <code>@State</code> property that
+           starts with the sample data, then use it in the list.</p>
+
+        <div class="code"><span class="filename">ContentView.swift</span><pre><span class="line"><span class="kw">struct</span> <span class="type">ContentView</span>: <span class="type">View</span> {</span>
+<span class="line added">    <span class="attr">@State</span> <span class="kw">private var</span> homeworkList: [<span class="type">Homework</span>] = <span class="type">Homework</span>.sampleData</span>
+<span class="line"></span>
+<span class="line">    <span class="kw">var</span> body: <span class="kw">some</span> <span class="type">View</span> {</span>
+<span class="line">        <span class="type">NavigationStack</span> {</span>
+<span class="line">            <span class="type">List</span> {</span>
+<span class="line added">                <span class="type">ForEach</span>(homeworkList) { homework <span class="kw">in</span></span>
+<span class="line">                    <span class="type">HomeworkRow</span>(homework: homework)</span>
+<span class="line">                }</span>
+<span class="line">            }</span>
+<span class="line">            .navigationTitle(<span class="str">"Homework"</span>)</span>
+<span class="line">        }</span>
+<span class="line">    }</span>
+<span class="line">}</span></pre></div>
+
+        <div class="callout">
+          <strong>What <code>@State</code> does:</strong> it tells SwiftUI
+          "this value belongs to the view, and the screen needs to refresh
+          whenever it changes." <code>private</code> keeps it from being
+          modified outside the view.
+        </div>
+      </div>
+    </div>
+
+    <div class="step">
+      <div class="step-num">2</div>
+      <div class="step-body">
+        <h3>Add swipe-to-delete.</h3>
+        <p>Because <code>homeworkList</code> can change, you can also let users
+           remove items. Add a single modifier to <code>ForEach</code>.</p>
+
+        <div class="code"><span class="filename">ContentView.swift</span><pre><span class="line">                <span class="type">ForEach</span>(homeworkList) { homework <span class="kw">in</span></span>
+<span class="line">                    <span class="type">HomeworkRow</span>(homework: homework)</span>
+<span class="line">                }</span>
+<span class="line added">                .onDelete { indexSet <span class="kw">in</span></span>
+<span class="line added">                    homeworkList.remove(atOffsets: indexSet)</span>
+<span class="line added">                }</span></pre></div>
+
+        <p>Run the preview, swipe a row from right to left, and tap
+           <strong>Delete</strong>. The row disappears and SwiftUI animates the
+           change for free.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SECTION 7 -->
+<section class="chapter" id="section-7">
+  <div class="wrap">
+    <div class="chapter-head"><div class="chapter-num">Section 7</div></div>
+    <h2 class="chapter-title">Toggle completion with @Binding</h2>
+    <p class="chapter-intro">
+      You want students to tap a circle to mark homework done. That tap happens
+      inside <code>HomeworkRow</code>, but the data lives in
+      <code>ContentView</code>. You'll connect them with <code>@Binding</code>—a
+      two-way reference that lets a child view read <em>and write</em> a value
+      its parent owns.
+    </p>
+    <span class="time-pill">⏱ About 12 minutes</span>
+
+    <div class="step">
+      <div class="step-num">1</div>
+      <div class="step-body">
+        <h3>Change <code>HomeworkRow</code> to use a binding.</h3>
+        <p>Replace <code>let homework</code> with
+           <code>@Binding var homework</code>. The body stays the same.</p>
+
+        <div class="code"><span class="filename">HomeworkRow.swift</span><pre><span class="line"><span class="kw">struct</span> <span class="type">HomeworkRow</span>: <span class="type">View</span> {</span>
+<span class="line added">    <span class="attr">@Binding</span> <span class="kw">var</span> homework: <span class="type">Homework</span></span>
+<span class="line"></span>
+<span class="line">    <span class="kw">var</span> body: <span class="kw">some</span> <span class="type">View</span> {</span>
+<span class="line">        <span class="type">HStack</span> {</span>
+<span class="line">            <span class="com">// …</span></span>
+<span class="line">        }</span>
+<span class="line">    }</span>
+<span class="line">}</span></pre></div>
+      </div>
+    </div>
+
+    <div class="step">
+      <div class="step-num">2</div>
+      <div class="step-body">
+        <h3>Add a tappable checkmark.</h3>
+        <p>Put a button at the very front of the <code>HStack</code> that
+           flips <code>isCompleted</code>. The button's image changes based on
+           the current value.</p>
+
+        <div class="code"><span class="filename">HomeworkRow.swift</span><pre><span class="line">        <span class="type">HStack</span> {</span>
+<span class="line added">            <span class="type">Button</span> {</span>
+<span class="line added">                homework.isCompleted.toggle()</span>
+<span class="line added">            } label: {</span>
+<span class="line added">                <span class="type">Image</span>(systemName: homework.isCompleted</span>
+<span class="line added">                                  ? <span class="str">"checkmark.circle.fill"</span></span>
+<span class="line added">                                  : <span class="str">"circle"</span>)</span>
+<span class="line added">                    .font(.title2)</span>
+<span class="line added">                    .foregroundStyle(homework.isCompleted ? .green : .secondary)</span>
+<span class="line added">            }</span>
+<span class="line added">            .buttonStyle(.plain)</span>
+<span class="line"></span>
+<span class="line">            <span class="type">VStack</span>(alignment: .leading, spacing: <span class="num">4</span>) { <span class="com">/* …unchanged… */</span> }</span>
+<span class="line">            <span class="type">Spacer</span>()</span>
+<span class="line">            priorityBadge</span>
+<span class="line">        }</span></pre></div>
+
+        <div class="callout warn">
+          <strong>Why <code>.buttonStyle(.plain)</code>?</strong> Without it,
+          tapping anywhere in the row would trigger the button. The plain style
+          shrinks the tap target back to just the icon.
+        </div>
+      </div>
+    </div>
+
+    <div class="step">
+      <div class="step-num">3</div>
+      <div class="step-body">
+        <h3>Strike through completed titles.</h3>
+        <p>Inside the inner <code>VStack</code>, add a modifier to the title
+           so finished work is visually crossed out.</p>
+
+        <div class="code"><span class="filename">HomeworkRow.swift</span><pre><span class="line">                <span class="type">Text</span>(homework.title)</span>
+<span class="line">                    .font(.headline)</span>
+<span class="line added">                    .strikethrough(homework.isCompleted)</span>
+<span class="line added">                    .foregroundStyle(homework.isCompleted ? .secondary : .primary)</span></pre></div>
+      </div>
+    </div>
+
+    <div class="step">
+      <div class="step-num">4</div>
+      <div class="step-body">
+        <h3>Pass the binding from <code>ContentView</code>.</h3>
+        <p>Back in <code>ContentView.swift</code>, switch <code>ForEach</code>
+           to its binding form by prefixing the array with <code>$</code>.
+           Each loop variable becomes a binding too.</p>
+
+        <div class="code"><span class="filename">ContentView.swift</span><pre><span class="line">            <span class="type">List</span> {</span>
+<span class="line added">                <span class="type">ForEach</span>($homeworkList) { $homework <span class="kw">in</span></span>
+<span class="line added">                    <span class="type">HomeworkRow</span>(homework: $homework)</span>
+<span class="line">                }</span>
+<span class="line">                .onDelete { indexSet <span class="kw">in</span></span>
+<span class="line">                    homeworkList.remove(atOffsets: indexSet)</span>
+<span class="line">                }</span>
+<span class="line">            }</span></pre></div>
+
+        <div class="callout">
+          <strong>The dollar sign:</strong> <code>$homeworkList</code> hands
+          out a binding instead of a copy. <code>$homework</code> inside the
+          loop lets the child view write straight back into the array.
+        </div>
+      </div>
+    </div>
+
+    <div class="step">
+      <div class="step-num">5</div>
+      <div class="step-body">
+        <h3>Run it and tap a row.</h3>
+        <p>Press play in the preview. Tap any circle—watch the row dim, the
+           title cross out, and the checkmark fill in. SwiftUI handled all of
+           that for you because the view body is a function of the state.</p>
+
+        <div class="preview">
+          <div class="preview-title">After tapping the first row</div>
+          <div class="phone">
+            <div class="phone-bar">Homework</div>
+            <div class="row" style="opacity:.55">
+              <div class="check done"></div>
+              <div class="row-text">
+                <div class="row-subject">Math</div>
+                <div class="row-title done">Chapter 5 problems 1–20</div>
+                <div class="row-date">Due tomorrow</div>
+              </div>
+              <div class="badge high">High</div>
+            </div>
+            <div class="row">
+              <div class="check"></div>
+              <div class="row-text">
+                <div class="row-subject">English</div>
+                <div class="row-title">Draft of persuasive essay</div>
+                <div class="row-date">Due in 2 days</div>
+              </div>
+              <div class="badge med">Medium</div>
+            </div>
+            <div class="row">
+              <div class="check"></div>
+              <div class="row-text">
+                <div class="row-subject">Science</div>
+                <div class="row-title">Lab report on photosynthesis</div>
+                <div class="row-date">Due in 3 days</div>
+              </div>
+              <div class="badge low">Low</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="callout tip">
+          <strong>You did it!</strong> You've built a working homework
+          tracker that models data, displays it dynamically, and reacts to
+          taps—all with under 100 lines of code.
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SECTION 8 -->
+<section class="chapter" id="section-8">
+  <div class="wrap">
+    <div class="chapter-head"><div class="chapter-num">Section 8</div></div>
+    <h2 class="chapter-title">Check your understanding</h2>
+    <p class="chapter-intro">
+      Test what stuck. Try to answer each question before you reveal the
+      explanation.
+    </p>
+
+    <div class="check-yourself">
+      <h4>1. Why does <code>Homework</code> need an <code>id</code>?</h4>
+      <p>What goes wrong if you remove the <code>Identifiable</code> conformance?</p>
+      <details>
+        <summary>Reveal answer</summary>
+        <div class="answer">
+          <code>List</code> and <code>ForEach</code> need to tell each row apart
+          to animate inserts, deletes, and reorders. Without an <code>id</code>
+          you'd have to provide one with <code>id: \.someProperty</code>—and
+          if two rows had matching values, SwiftUI would treat them as the same
+          row and the UI would behave unpredictably.
+        </div>
+      </details>
+    </div>
+
+    <div class="check-yourself">
+      <h4>2. What's the difference between <code>let</code> and <code>@State</code>?</h4>
+      <details>
+        <summary>Reveal answer</summary>
+        <div class="answer">
+          A <code>let</code> property is fixed for the lifetime of the view—you
+          can read it but never assign to it. A <code>@State</code> property
+          can change, and SwiftUI watches it: whenever the value updates, the
+          view body is recomputed and the screen redraws.
+        </div>
+      </details>
+    </div>
+
+    <div class="check-yourself">
+      <h4>3. Why use <code>@Binding</code> in <code>HomeworkRow</code> instead of <code>@State</code>?</h4>
+      <details>
+        <summary>Reveal answer</summary>
+        <div class="answer">
+          <code>@State</code> would mean the row <em>owns</em> its own copy of
+          a homework value—changes there wouldn't reach the array in
+          <code>ContentView</code>. <code>@Binding</code> is a reference back
+          to the parent's data, so toggling the checkbox actually updates the
+          source of truth.
+        </div>
+      </details>
+    </div>
+
+    <div class="check-yourself">
+      <h4>4. Where would you add code to <em>create</em> a new homework?</h4>
+      <details>
+        <summary>Reveal answer</summary>
+        <div class="answer">
+          You'd add a toolbar button on the <code>NavigationStack</code> that
+          shows a sheet containing a form. The form's <strong>Save</strong>
+          button would <code>append</code> a new <code>Homework</code> to
+          <code>homeworkList</code>. Because the array is <code>@State</code>,
+          the list updates instantly. Try it as homework!
+        </div>
+      </details>
+    </div>
+
+    <div style="margin-top:36px; padding:24px; background:#e8f2ff; border-radius:12px;">
+      <h3 style="margin-top:0; color:#003c80;">Stretch goals</h3>
+      <ul style="color:#003c80; margin:0;">
+        <li>Add a "+" toolbar button that presents a sheet to add new homework.</li>
+        <li>Group rows by subject using <code>Section</code> inside the <code>List</code>.</li>
+        <li>Add a segmented control to filter All / Pending / Completed.</li>
+        <li>Persist the list with <code>@AppStorage</code> or <code>SwiftData</code> so it survives a relaunch.</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <p><strong>Building a Homework Tracker</strong> · A SwiftUI tutorial for beginners</p>
+    <p style="margin-top:8px">Concepts: <code>struct</code> · <code>Identifiable</code> · <code>List</code> · <code>ForEach</code> · <code>@State</code> · <code>@Binding</code></p>
+  </div>
+</footer>
+
+</body>
+</html>

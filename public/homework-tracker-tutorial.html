@@ -407,6 +407,99 @@
   }
   footer strong { color: white; }
 
+  /* Concept breakdown cards */
+  .concept-card {
+    background: var(--paper);
+    border: 1px solid var(--rule);
+    border-radius: 14px;
+    padding: 26px 30px 28px;
+    margin-bottom: 28px;
+    box-shadow: 0 1px 0 rgba(0,0,0,0.02);
+  }
+  .concept-head {
+    display: flex;
+    align-items: baseline;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin-bottom: 18px;
+  }
+  .concept-num {
+    font-size: 22px;
+    font-weight: 700;
+    color: var(--ink);
+  }
+  .concept-title {
+    font-size: 22px;
+    font-weight: 700;
+    color: var(--ink);
+    letter-spacing: -0.01em;
+  }
+  .concept-sub {
+    color: var(--ink-mute);
+    font-weight: 500;
+    font-size: 18px;
+  }
+  .concept-card .code .filename {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    letter-spacing: 0;
+    text-transform: none;
+    font-size: 13px;
+    font-weight: 600;
+    color: #c8c8d0;
+    margin-bottom: 14px;
+  }
+  .concept-card .code .filename .icons {
+    display: inline-flex;
+    gap: 14px;
+    opacity: 0.55;
+    font-size: 14px;
+  }
+  .concept-bullets {
+    list-style: none;
+    padding: 0;
+    margin: 18px 0 0;
+  }
+  .concept-bullets > li {
+    padding-left: 26px;
+    position: relative;
+    margin-bottom: 14px;
+    font-size: 15.5px;
+    color: var(--ink-soft);
+    line-height: 1.65;
+  }
+  .concept-bullets > li::before {
+    content: "○";
+    position: absolute;
+    left: 4px;
+    top: 0;
+    color: var(--ink-mute);
+    font-size: 13px;
+    font-weight: 700;
+  }
+  .concept-bullets code {
+    background: #eef0f3;
+    color: #b04a64;
+    padding: 1px 6px;
+    border-radius: 4px;
+    font-family: "SF Mono", Menlo, Consolas, monospace;
+    font-size: 13.5px;
+  }
+  .concept-bullets .chain {
+    display: inline-block;
+    background: var(--accent-soft);
+    color: var(--accent);
+    font-weight: 700;
+    padding: 1px 8px;
+    border-radius: 4px;
+    margin-right: 6px;
+    font-size: 13px;
+    letter-spacing: 0.02em;
+    text-transform: uppercase;
+    vertical-align: 2px;
+  }
+
   @media (max-width: 640px) {
     h1.title { font-size: 36px; }
     h2.chapter-title { font-size: 26px; }
@@ -447,6 +540,7 @@
       <li><a href="#section-5">Build a custom row view</a></li>
       <li><a href="#section-6">Manage data with @State</a></li>
       <li><a href="#section-7">Toggle completion with @Binding</a></li>
+      <li><a href="#section-concepts">Concept breakdowns</a></li>
       <li><a href="#section-8">Check your understanding</a></li>
     </ol>
   </div>
@@ -1130,10 +1224,172 @@
   </div>
 </section>
 
-<!-- SECTION 8 -->
-<section class="chapter" id="section-8">
+<!-- SECTION 8: CONCEPT BREAKDOWNS -->
+<section class="chapter" id="section-concepts">
   <div class="wrap">
     <div class="chapter-head"><div class="chapter-num">Section 8</div></div>
+    <h2 class="chapter-title">Concept breakdowns</h2>
+    <p class="chapter-intro">
+      Now that the app works, slow down and unpack the six ideas that did the
+      heavy lifting. Each card pulls the relevant code out on its own and
+      peels it back, line by line.
+    </p>
+
+    <!-- 1. Identifiable data models -->
+    <div class="concept-card">
+      <div class="concept-head">
+        <span class="concept-num">1.</span>
+        <span class="concept-title">Identifiable data models</span>
+        <span class="concept-sub">(modeling)</span>
+      </div>
+      <div class="code"><span class="filename">Swift <span class="icons">⤓  ⧉</span></span><pre><span class="line"><span class="kw">struct</span> <span class="type">Homework</span>: <span class="type">Identifiable</span> {</span>
+<span class="line">    <span class="kw">let</span> id = <span class="type">UUID</span>()           <span class="com">// 1. Permanent unique identity</span></span>
+<span class="line">    <span class="kw">var</span> subject: <span class="type">String</span>          <span class="com">// 2. Mutable properties</span></span>
+<span class="line">    <span class="kw">var</span> title: <span class="type">String</span></span>
+<span class="line">    <span class="kw">var</span> dueDate: <span class="type">Date</span></span>
+<span class="line">    <span class="kw">var</span> isCompleted: <span class="type">Bool</span> = <span class="kw">false</span> <span class="com">// 3. Default value</span></span>
+<span class="line">    <span class="kw">var</span> priority: <span class="type">Priority</span> = .medium</span>
+<span class="line">}</span></pre></div>
+      <ul class="concept-bullets">
+        <li><code>struct</code> defines a <strong>value type</strong>. Each <code>Homework</code> is its own independent copy — passing one around never accidentally shares state with another row.</li>
+        <li><code>Identifiable</code> is a protocol whose only requirement is an <code>id</code> property. SwiftUI uses this id to tell rows apart inside a <code>List</code>.</li>
+        <li><code>UUID()</code> generates a globally-unique value the instant the struct is created, so two assignments can never collide — even ones with the exact same title.</li>
+        <li><code>let id</code> (not <code>var</code>) locks the identity for life: the subject and title can change, but the id never does.</li>
+        <li><span class="chain">Why it matters</span> Without <code>Identifiable</code>, SwiftUI loses track of which row is which, and inserts, deletes, and reorders animate incorrectly — or not at all.</li>
+      </ul>
+    </div>
+
+    <!-- 2. Static sample data -->
+    <div class="concept-card">
+      <div class="concept-head">
+        <span class="concept-num">2.</span>
+        <span class="concept-title">Static sample data</span>
+        <span class="concept-sub">(extensions &amp; type-level storage)</span>
+      </div>
+      <div class="code"><span class="filename">Swift <span class="icons">⤓  ⧉</span></span><pre><span class="line"><span class="kw">extension</span> <span class="type">Homework</span> {</span>
+<span class="line">    <span class="kw">static let</span> sampleData: [<span class="type">Homework</span>] = [   <span class="com">// 1. Belongs to the type, not an instance</span></span>
+<span class="line">        <span class="type">Homework</span>(subject: <span class="str">"Math"</span>,</span>
+<span class="line">                 title: <span class="str">"Chapter 5"</span>,</span>
+<span class="line">                 dueDate: .now.addingTimeInterval(<span class="num">86_400</span>),</span>
+<span class="line">                 priority: .high)                  <span class="com">// 2. Trailing properties take defaults</span></span>
+<span class="line">        <span class="com">// …more entries…</span></span>
+<span class="line">    ]</span>
+<span class="line">}</span></pre></div>
+      <ul class="concept-bullets">
+        <li><code>extension</code> adds functionality to an existing type without touching its original file. Great for keeping the core model lean while still attaching test data to it.</li>
+        <li><code>static let</code> means the value lives on the <strong>type itself</strong>. You access it as <code>Homework.sampleData</code> — never instance-by-instance.</li>
+        <li>Putting sample data on the model means every view and every Xcode preview can grab the same realistic examples with one line.</li>
+        <li>Notice the call to <code>Homework(...)</code> only sets some properties — the rest fall back to the defaults defined on the struct (<code>isCompleted = false</code>, etc.).</li>
+        <li><span class="chain">Trade-off</span> Perfect for development; in a shipping app you'd swap this for data loaded from disk, SwiftData, or a server.</li>
+      </ul>
+    </div>
+
+    <!-- 3. Dynamic list rendering -->
+    <div class="concept-card">
+      <div class="concept-head">
+        <span class="concept-num">3.</span>
+        <span class="concept-title">Dynamic list rendering</span>
+        <span class="concept-sub">(data-driven views)</span>
+      </div>
+      <div class="code"><span class="filename">Swift <span class="icons">⤓  ⧉</span></span><pre><span class="line"><span class="type">NavigationStack</span> {</span>
+<span class="line">    <span class="type">List</span> {</span>
+<span class="line">        <span class="type">ForEach</span>(homeworkList) { homework <span class="kw">in</span>   <span class="com">// 1. Iterate the array</span></span>
+<span class="line">            <span class="type">HomeworkRow</span>(homework: homework)        <span class="com">// 2. One row per element</span></span>
+<span class="line">        }</span>
+<span class="line">    }</span>
+<span class="line">    .navigationTitle(<span class="str">"Homework"</span>)                  <span class="com">// 3. Large title at the top</span></span>
+<span class="line">}</span></pre></div>
+      <ul class="concept-bullets">
+        <li><code>List</code> gives you native iOS table styling — scrolling, separators, swipe actions — for free. You never write layout math.</li>
+        <li><code>ForEach(collection)</code> walks the collection and emits a child view per element. The closure parameter <code>homework</code> is one element at a time.</li>
+        <li>Because <code>Homework</code> is <code>Identifiable</code>, no <code>id:</code> argument is needed — SwiftUI just reads <code>homework.id</code> automatically.</li>
+        <li><code>NavigationStack</code> wraps the screen so you can later add titles, toolbars, and detail-view pushes without restructuring anything.</li>
+        <li><span class="chain">Chain reaction</span> array exists → <code>ForEach</code> iterates → emits one <code>HomeworkRow</code> per element → <code>List</code> stacks them as native rows.</li>
+      </ul>
+    </div>
+
+    <!-- 4. View-owned mutable data with @State -->
+    <div class="concept-card">
+      <div class="concept-head">
+        <span class="concept-num">4.</span>
+        <span class="concept-title">View-owned mutable data</span>
+        <span class="concept-sub">(@State + automatic redraw)</span>
+      </div>
+      <div class="code"><span class="filename">Swift <span class="icons">⤓  ⧉</span></span><pre><span class="line"><span class="attr">@State</span> <span class="kw">private var</span> homeworkList: [<span class="type">Homework</span>] = <span class="type">Homework</span>.sampleData</span>
+<span class="line"></span>
+<span class="line"><span class="type">List</span> {</span>
+<span class="line">    <span class="type">ForEach</span>(homeworkList) { homework <span class="kw">in</span></span>
+<span class="line">        <span class="type">HomeworkRow</span>(homework: homework)</span>
+<span class="line">    }</span>
+<span class="line">    .onDelete { indexSet <span class="kw">in</span>                  <span class="com">// 1. User swipes a row</span></span>
+<span class="line">        homeworkList.remove(atOffsets: indexSet)  <span class="com">// 2. Mutate state directly</span></span>
+<span class="line">    }</span>
+<span class="line">}</span></pre></div>
+      <ul class="concept-bullets">
+        <li><code>@State</code> tells SwiftUI "this data belongs to the view and will change." The value is stored outside the struct so it survives every body re-run.</li>
+        <li><code>private</code> hides the state from the outside world — state is a local detail, not part of the view's public interface.</li>
+        <li><code>.onDelete</code> is a modifier on <code>ForEach</code> that adds swipe-to-delete. SwiftUI hands you the <code>indexSet</code> of rows the user removed.</li>
+        <li>You never call "refresh" or "reload." Mutating <code>homeworkList</code> is the refresh — SwiftUI watches the assignment and rebuilds the body.</li>
+        <li><span class="chain">Chain reaction</span> swipe to delete → array shrinks → <code>@State</code> detects the change → body re-runs → <code>ForEach</code> walks the new array → the missing row animates out.</li>
+      </ul>
+    </div>
+
+    <!-- 5. Two-way binding -->
+    <div class="concept-card">
+      <div class="concept-head">
+        <span class="concept-num">5.</span>
+        <span class="concept-title">Two-way binding</span>
+        <span class="concept-sub">(@Binding + the $ prefix)</span>
+      </div>
+      <div class="code"><span class="filename">Swift <span class="icons">⤓  ⧉</span></span><pre><span class="line"><span class="com">// Parent: ContentView.swift</span></span>
+<span class="line"><span class="type">ForEach</span>($homeworkList) { $homework <span class="kw">in</span>      <span class="com">// 1. $ → binding to each element</span></span>
+<span class="line">    <span class="type">HomeworkRow</span>(homework: $homework)         <span class="com">// 2. Hand the binding to the child</span></span>
+<span class="line">}</span>
+<span class="line"></span>
+<span class="line"><span class="com">// Child: HomeworkRow.swift</span></span>
+<span class="line"><span class="kw">struct</span> <span class="type">HomeworkRow</span>: <span class="type">View</span> {</span>
+<span class="line">    <span class="attr">@Binding</span> <span class="kw">var</span> homework: <span class="type">Homework</span>         <span class="com">// 3. Reference back to the parent</span></span>
+<span class="line">}</span></pre></div>
+      <ul class="concept-bullets">
+        <li><code>$homeworkList</code> (with the dollar sign) hands out a <strong>binding</strong> to the array instead of a copy. Bindings are like a remote control — read <em>and</em> write the original.</li>
+        <li><code>ForEach($collection)</code> is a special overload that yields element-level bindings. Each <code>$homework</code> in the loop is itself a binding into the array.</li>
+        <li><code>@Binding</code> in the child says "I don't own this value — I just hold a reference." Any write inside the child goes straight back to the parent's <code>@State</code>.</li>
+        <li>Two property wrappers, one pipe: <code>@State</code> is the source of truth, <code>@Binding</code> is the wire. Together they keep parent and child perfectly in sync.</li>
+        <li><span class="chain">Mental model</span> <code>@State</code> = "I own it." <code>@Binding</code> = "I borrow it." <code>$</code> = "give me the wire to it."</li>
+      </ul>
+    </div>
+
+    <!-- 6. Reactive UI from a tap -->
+    <div class="concept-card">
+      <div class="concept-head">
+        <span class="concept-num">6.</span>
+        <span class="concept-title">Reactive UI from a single tap</span>
+        <span class="concept-sub">(interaction logic)</span>
+      </div>
+      <div class="code"><span class="filename">Swift <span class="icons">⤓  ⧉</span></span><pre><span class="line"><span class="type">Button</span> {</span>
+<span class="line">    homework.isCompleted.toggle()                <span class="com">// 1. Flip the Bool in place</span></span>
+<span class="line">} label: {</span>
+<span class="line">    <span class="type">Image</span>(systemName: homework.isCompleted</span>
+<span class="line">                       ? <span class="str">"checkmark.circle.fill"</span>   <span class="com">// 2. When true</span></span>
+<span class="line">                       : <span class="str">"circle"</span>)                <span class="com">// 3. When false</span></span>
+<span class="line">        .foregroundStyle(homework.isCompleted ? .green : .secondary)</span>
+<span class="line">}</span>
+<span class="line">.buttonStyle(.plain)                             <span class="com">// 4. Don't make the whole row tappable</span></span></pre></div>
+      <ul class="concept-bullets">
+        <li><code>Button { action } label: { view }</code> uses two trailing closures: the first runs on tap, the second describes how the button looks.</li>
+        <li><code>.toggle()</code> is a Bool method that inverts the value in place. It works because <code>homework</code> is a binding writing back through to the array.</li>
+        <li>The ternary <code>condition ? a : b</code> lets the icon name and color depend on the current state without an <code>if</code> block — keeping the view a clean expression.</li>
+        <li><code>.buttonStyle(.plain)</code> shrinks the tap target back to just the icon. Without it, tapping anywhere in the row would trigger the button.</li>
+        <li><span class="chain">Chain reaction</span> tap → action fires → <code>isCompleted</code> flips → binding writes to the array → <code>@State</code> notices → body re-runs → icon, color, and strike-through all update — in a single frame.</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- SECTION 9 -->
+<section class="chapter" id="section-8">
+  <div class="wrap">
+    <div class="chapter-head"><div class="chapter-num">Section 9</div></div>
     <h2 class="chapter-title">Check your understanding</h2>
     <p class="chapter-intro">
       Test what stuck. Try to answer each question before you reveal the
